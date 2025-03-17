@@ -5,15 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.alone.coder</groupId>
-        <artifactId>alone-module</artifactId>
+        <artifactId>alone-module-file</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>alone-module-file</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>alone-module-file-api</module>
-        <module>alone-module-file-biz</module>
-    </modules>
+    <artifactId>alone-module-file-biz</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>
