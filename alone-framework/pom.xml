@@ -24,6 +24,7 @@
         <module>alone-spring-boot-starter-swagger</module>
         <module>alone-spring-boot-starter-feign</module>
         <module>alone-spring-boot-starter-sensitive</module>
+        <module>alone-spring-boot-starter-dynamic-route</module>
     </modules>
 
 </project>
