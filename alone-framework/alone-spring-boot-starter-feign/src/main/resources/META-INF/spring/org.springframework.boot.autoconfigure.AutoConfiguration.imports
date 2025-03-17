@@ -1,0 +1,2 @@
+com.alone.coder.framework.feign.config.RestTemplateAutoConfigure
+com.alone.coder.framework.feign.config.AloneFeignAutoConfiguration

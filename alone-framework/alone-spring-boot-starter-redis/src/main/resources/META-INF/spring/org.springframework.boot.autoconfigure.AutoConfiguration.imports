@@ -1,0 +1,2 @@
+com.alone.coder.framework.redis.config.AloneRedisAutoConfiguration
+com.alone.coder.framework.redis.config.AloneCacheAutoConfiguration

@@ -1,0 +1,12 @@
+{
+  "properties": [
+    {
+      "name": "alone.cache.redisScanBatchSize",
+      "type": "java.lang.Integer",
+      "defaultValue": 30,
+      "sourceType": "com.alone.coder.framework.redis.config.AloneCacheProperties",
+      "description": "redis scan 一次返回数量"
+    }
+  ],
+  "hints": []
+}
