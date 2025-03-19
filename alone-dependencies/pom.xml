@@ -43,6 +43,12 @@
         <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
         <!-- S3协议 -->
         <aws-java-sdk-s3.version>1.12.777</aws-java-sdk-s3.version>
+        <!-- 七牛云 -->
+        <qiniu-java-sdk.version>7.12.1</qiniu-java-sdk.version>
+        <!-- you拍云 -->
+        <upyun-java-sdk.version>4.2.3</upyun-java-sdk.version>
+        <!--  tika 解析 -->
+        <tika-core.version>2.9.2</tika-core.version>
         <!-- 验证码 -->
         <captcha-plus.version>2.0.3</captcha-plus.version>
 
@@ -149,6 +155,11 @@
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-annotation</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-jsqlparser</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
@@ -248,6 +259,23 @@
                 <artifactId>aws-java-sdk-s3</artifactId>
                 <version>${aws-java-sdk-s3.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.qiniu</groupId>
+                <artifactId>qiniu-java-sdk</artifactId>
+                <version>${qiniu-java-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.upyun</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>${upyun-java-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-core</artifactId> <!-- 文件类型的识别 -->
+                <version>${tika-core.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>com.xingyuv</groupId>
                 <artifactId>spring-boot-starter-captcha-plus</artifactId>
