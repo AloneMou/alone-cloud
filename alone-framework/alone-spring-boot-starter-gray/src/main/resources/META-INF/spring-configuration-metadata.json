@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "alone.gray.rule.enabled",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "sourceType": "com.alone.coder.framework.gray.config.GrayLoadBalancerAutoConfiguration",
+      "description": "是否开启灰度规则"
+    }
+
+  ],
+  "hints": []
+}
