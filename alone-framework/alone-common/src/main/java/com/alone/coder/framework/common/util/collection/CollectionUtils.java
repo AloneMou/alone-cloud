@@ -57,7 +57,7 @@ public class CollectionUtils {
 		if (ArrayUtil.isEmpty(from)) {
 			return new ArrayList<>();
 		}
-		return convertList(Arrays.asList(from), func);
+		return convertList(asList(from), func);
 	}
 
 	public static <T, U> List<U> convertList(Collection<T> from, Function<T, U> func) {

@@ -7,6 +7,8 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+import static java.util.Arrays.asList;
+
 /**
  * Object 工具类
  *
@@ -56,7 +58,7 @@ public class ObjectUtils {
 
 	@SafeVarargs
 	public static <T> boolean equalsAny(T obj, T... array) {
-		return Arrays.asList(array).contains(obj);
+		return asList(array).contains(obj);
 	}
 
 }

@@ -5,7 +5,7 @@ import com.alone.coder.framework.common.core.ArrayValuable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.Arrays;
+import static java.util.Arrays.stream;
 
 /**
  * 通用状态枚举
@@ -18,7 +18,7 @@ public enum CommonStatusEnum implements ArrayValuable<Integer> {
 
 	ENABLE(0, "开启"), DISABLE(1, "关闭");
 
-	public static final Integer[] ARRAYS = Arrays.stream(values())
+	public static final Integer[] ARRAYS = stream(values())
 		.map(CommonStatusEnum::getStatus)
 		.toArray(Integer[]::new);
 
