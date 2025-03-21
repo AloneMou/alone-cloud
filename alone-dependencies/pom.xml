@@ -47,6 +47,7 @@
         <qiniu-java-sdk.version>7.12.1</qiniu-java-sdk.version>
         <!-- you拍云 -->
         <upyun-java-sdk.version>4.2.3</upyun-java-sdk.version>
+        <org.json.version>20231013</org.json.version>
         <!--  tika 解析 -->
         <tika-core.version>2.9.2</tika-core.version>
         <!-- 验证码 -->
@@ -268,6 +269,17 @@
                 <groupId>com.upyun</groupId>
                 <artifactId>java-sdk</artifactId>
                 <version>${upyun-java-sdk.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.json</groupId>
+                        <artifactId>json</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${org.json.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.tika</groupId>
