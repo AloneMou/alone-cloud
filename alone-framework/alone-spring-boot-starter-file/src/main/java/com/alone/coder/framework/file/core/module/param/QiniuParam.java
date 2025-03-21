@@ -7,4 +7,5 @@ import lombok.Getter;
  */
 @Getter
 public class QiniuParam extends S3BaseParam {
+
 }

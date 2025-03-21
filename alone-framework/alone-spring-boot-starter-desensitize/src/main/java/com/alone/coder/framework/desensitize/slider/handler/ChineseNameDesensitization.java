@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.slider.handler;
 
-
 import com.alone.coder.framework.desensitize.slider.annotation.ChineseNameDesensitize;
 
 /**
@@ -10,19 +9,19 @@ import com.alone.coder.framework.desensitize.slider.annotation.ChineseNameDesens
  */
 public class ChineseNameDesensitization extends AbstractSliderDesensitizationHandler<ChineseNameDesensitize> {
 
-    @Override
-    Integer getPrefixKeep(ChineseNameDesensitize annotation) {
-        return annotation.prefixKeep();
-    }
+	@Override
+	Integer getPrefixKeep(ChineseNameDesensitize annotation) {
+		return annotation.prefixKeep();
+	}
 
-    @Override
-    Integer getSuffixKeep(ChineseNameDesensitize annotation) {
-        return annotation.suffixKeep();
-    }
+	@Override
+	Integer getSuffixKeep(ChineseNameDesensitize annotation) {
+		return annotation.suffixKeep();
+	}
 
-    @Override
-    String getReplacer(ChineseNameDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	String getReplacer(ChineseNameDesensitize annotation) {
+		return annotation.replacer();
+	}
 
 }

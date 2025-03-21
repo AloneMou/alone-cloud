@@ -15,21 +15,22 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
  */
 public class HuaweiServiceImpl extends AbstractS3BaseFileService<HuaweiParam> {
 
-    public HuaweiServiceImpl(String configId, HuaweiParam param) {
-        super(configId, param);
-    }
+	public HuaweiServiceImpl(String configId, HuaweiParam param) {
+		super(configId, param);
+	}
 
-    @Override
-    public void init() {
-        BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-        s3Client = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "obs"))
-                .build();
-    }
+	@Override
+	public void init() {
+		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
+		s3Client = AmazonS3ClientBuilder.standard()
+			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "obs"))
+			.build();
+	}
 
-    @Override
-    public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.HUAWEI;
-    }
+	@Override
+	public StorageTypeEnum getStorageTypeEnum() {
+		return StorageTypeEnum.HUAWEI;
+	}
+
 }

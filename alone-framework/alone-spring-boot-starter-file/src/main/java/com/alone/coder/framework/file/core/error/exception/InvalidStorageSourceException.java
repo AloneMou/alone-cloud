@@ -13,29 +13,29 @@ import static com.alone.coder.framework.file.core.error.code.StorageErrorCode.ST
 @Getter
 public class InvalidStorageSourceException extends RuntimeException {
 
+	/**
+	 * 全局错误码
+	 *
+	 * @see GlobalErrorCodeConstants
+	 */
+	private final Integer code;
 
-    /**
-     * 全局错误码
-     *
-     * @see GlobalErrorCodeConstants
-     */
-    private final Integer code;
-    /**
-     * 错误提示
-     */
-    private final String message;
+	/**
+	 * 错误提示
+	 */
+	private final String message;
 
-    /**
-     * 空构造方法，避免反序列化问题
-     */
-    public InvalidStorageSourceException() {
-        this.code = STORAGE_SOURCE_NOT_FOUND.getCode();
-        this.message = STORAGE_SOURCE_NOT_FOUND.getMsg();
-    }
+	/**
+	 * 空构造方法，避免反序列化问题
+	 */
+	public InvalidStorageSourceException() {
+		this.code = STORAGE_SOURCE_NOT_FOUND.getCode();
+		this.message = STORAGE_SOURCE_NOT_FOUND.getMsg();
+	}
 
-    public InvalidStorageSourceException(String message) {
-        this.code = STORAGE_SOURCE_NOT_FOUND.getCode();
-        this.message = message;
-    }
+	public InvalidStorageSourceException(String message) {
+		this.code = STORAGE_SOURCE_NOT_FOUND.getCode();
+		this.message = message;
+	}
 
 }

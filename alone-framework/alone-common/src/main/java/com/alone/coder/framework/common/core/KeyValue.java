@@ -16,7 +16,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class KeyValue<K, V> implements Serializable {
 
-    private K key;
-    private V value;
+	private K key;
+
+	private V value;
 
 }

@@ -9,28 +9,26 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class VersionContextHolder {
 
-    private final ThreadLocal<String> THREAD_LOCAL_VERSION = new TransmittableThreadLocal<>();
+	private final ThreadLocal<String> THREAD_LOCAL_VERSION = new TransmittableThreadLocal<>();
 
-    /**
-     * TTL 设置版本号<br/>
-     *
-     * @param version 版本号
-     */
-    public void setVersion(String version) {
-        THREAD_LOCAL_VERSION.set(version);
-    }
+	/**
+	 * TTL 设置版本号<br/>
+	 * @param version 版本号
+	 */
+	public void setVersion(String version) {
+		THREAD_LOCAL_VERSION.set(version);
+	}
 
-    /**
-     * 获取TTL中的版本号
-     *
-     * @return 版本 || null
-     */
-    public String getVersion() {
-        return THREAD_LOCAL_VERSION.get();
-    }
+	/**
+	 * 获取TTL中的版本号
+	 * @return 版本 || null
+	 */
+	public String getVersion() {
+		return THREAD_LOCAL_VERSION.get();
+	}
 
-    public void clear() {
-        THREAD_LOCAL_VERSION.remove();
-    }
+	public void clear() {
+		THREAD_LOCAL_VERSION.remove();
+	}
 
 }

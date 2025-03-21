@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.regex.handler;
 
-
 import com.alone.coder.framework.desensitize.regex.annotation.RegexDesensitize;
 
 /**
@@ -10,13 +9,14 @@ import com.alone.coder.framework.desensitize.regex.annotation.RegexDesensitize;
  */
 public class DefaultRegexDesensitizationHandler extends AbstractRegexDesensitizationHandler<RegexDesensitize> {
 
-    @Override
-    String getRegex(RegexDesensitize annotation) {
-        return annotation.regex();
-    }
+	@Override
+	String getRegex(RegexDesensitize annotation) {
+		return annotation.regex();
+	}
 
-    @Override
-    String getReplacer(RegexDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	String getReplacer(RegexDesensitize annotation) {
+		return annotation.replacer();
+	}
+
 }

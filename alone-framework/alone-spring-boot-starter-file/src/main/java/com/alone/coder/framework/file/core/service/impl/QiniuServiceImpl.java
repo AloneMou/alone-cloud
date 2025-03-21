@@ -22,45 +22,48 @@ import com.qiniu.util.Auth;
  */
 public class QiniuServiceImpl extends AbstractS3BaseFileService<QiniuParam> {
 
-    private BucketManager bucketManager;
-    private Auth auth;
+	private BucketManager bucketManager;
 
-    public QiniuServiceImpl(String configId, QiniuParam param) {
-        super(configId, param);
-    }
+	private Auth auth;
 
-    @Override
-    public void init() {
-        BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-        s3Client = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "kodo"))
-                .build();
+	public QiniuServiceImpl(String configId, QiniuParam param) {
+		super(configId, param);
+	}
 
-        Configuration cfg = new Configuration(Region.autoRegion());
-        auth = Auth.create(param.getAccessKey(), param.getSecretKey());
-        bucketManager = new BucketManager(auth, cfg);
-    }
+	@Override
+	public void init() {
+		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
+		s3Client = AmazonS3ClientBuilder.standard()
+			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "kodo"))
+			.build();
 
-    @Override
-    public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.QINIU;
-    }
+		Configuration cfg = new Configuration(Region.autoRegion());
+		auth = Auth.create(param.getAccessKey(), param.getSecretKey());
+		bucketManager = new BucketManager(auth, cfg);
+	}
 
-    @Override
-    public String getDownloadUrl(String pathAndName) {
-        String domain = param.getDomain();
-        Integer tokenTime = param.getTokenTime();
-        if (param.getTokenTime() == null || param.getTokenTime() < 1) {
-            tokenTime = 1800;
-        }
-        String fullPath = StrUtils.concatTrimStartSlashes(param.getBasePath() + pathAndName);
-        // 如果不是私有空间, 且指定了加速域名, 则使用 qiniu 的 sdk 获取下载链接
-        // (使用 s3 sdk 获取到的下载链接替换自动加速域名后无法访问, 故这里使用 qiniu sdk).
-        if (BooleanUtil.isTrue(param.isPrivate()) && StrUtil.isNotEmpty(domain)) {
-            String customDomainFullPath = StrUtils.removeDuplicateSlashes(domain + "/" + StrUtils.encodeAllIgnoreSlashes(fullPath));
-            return auth.privateDownloadUrl(customDomainFullPath, tokenTime);
-        }
-        return super.getDownloadUrl(pathAndName);
-    }
+	@Override
+	public StorageTypeEnum getStorageTypeEnum() {
+		return StorageTypeEnum.QINIU;
+	}
+
+	@Override
+	public String getDownloadUrl(String pathAndName) {
+		String domain = param.getDomain();
+		Integer tokenTime = param.getTokenTime();
+		if (param.getTokenTime() == null || param.getTokenTime() < 1) {
+			tokenTime = 1800;
+		}
+		String fullPath = StrUtils.concatTrimStartSlashes(param.getBasePath() + pathAndName);
+		// 如果不是私有空间, 且指定了加速域名, 则使用 qiniu 的 sdk 获取下载链接
+		// (使用 s3 sdk 获取到的下载链接替换自动加速域名后无法访问, 故这里使用 qiniu sdk).
+		if (BooleanUtil.isTrue(param.isPrivate()) && StrUtil.isNotEmpty(domain)) {
+			String customDomainFullPath = StrUtils
+				.removeDuplicateSlashes(domain + "/" + StrUtils.encodeAllIgnoreSlashes(fullPath));
+			return auth.privateDownloadUrl(customDomainFullPath, tokenTime);
+		}
+		return super.getDownloadUrl(pathAndName);
+	}
+
 }

@@ -11,13 +11,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class VersionFeignRequestInterceptor implements RequestInterceptor {
 
-    @Override
-    public void apply(RequestTemplate template) {
-        String reqVersion = ServletUtils.getRequest() != null ? ServletUtils.getRequest().getHeader(FeignCommonConstants.VERSION)
-                : VersionContextHolder.getVersion();
-        if (StrUtil.isNotBlank(reqVersion)) {
-            log.debug("feign gray add header version :{}", reqVersion);
-            template.header(FeignCommonConstants.VERSION, reqVersion);
-        }
-    }
+	@Override
+	public void apply(RequestTemplate template) {
+		String reqVersion = ServletUtils.getRequest() != null
+				? ServletUtils.getRequest().getHeader(FeignCommonConstants.VERSION) : VersionContextHolder.getVersion();
+		if (StrUtil.isNotBlank(reqVersion)) {
+			log.debug("feign gray add header version :{}", reqVersion);
+			template.header(FeignCommonConstants.VERSION, reqVersion);
+		}
+	}
+
 }

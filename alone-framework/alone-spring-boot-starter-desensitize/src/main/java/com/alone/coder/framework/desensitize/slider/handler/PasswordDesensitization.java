@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.slider.handler;
 
-
 import com.alone.coder.framework.desensitize.slider.annotation.PasswordDesensitize;
 
 /**
@@ -9,18 +8,20 @@ import com.alone.coder.framework.desensitize.slider.annotation.PasswordDesensiti
  * @author AgoniMou
  */
 public class PasswordDesensitization extends AbstractSliderDesensitizationHandler<PasswordDesensitize> {
-    @Override
-    Integer getPrefixKeep(PasswordDesensitize annotation) {
-        return annotation.prefixKeep();
-    }
 
-    @Override
-    Integer getSuffixKeep(PasswordDesensitize annotation) {
-        return annotation.suffixKeep();
-    }
+	@Override
+	Integer getPrefixKeep(PasswordDesensitize annotation) {
+		return annotation.prefixKeep();
+	}
 
-    @Override
-    String getReplacer(PasswordDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	Integer getSuffixKeep(PasswordDesensitize annotation) {
+		return annotation.suffixKeep();
+	}
+
+	@Override
+	String getReplacer(PasswordDesensitize annotation) {
+		return annotation.replacer();
+	}
+
 }

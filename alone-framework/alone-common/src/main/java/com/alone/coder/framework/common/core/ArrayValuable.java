@@ -7,9 +7,9 @@ package com.alone.coder.framework.common.core;
  */
 public interface ArrayValuable<T> {
 
-    /**
-     * @return 数组
-     */
-    T[] array();
+	/**
+	 * @return 数组
+	 */
+	T[] array();
 
-} 
+}

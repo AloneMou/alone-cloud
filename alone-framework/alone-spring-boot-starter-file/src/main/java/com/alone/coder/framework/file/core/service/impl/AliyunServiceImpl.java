@@ -15,22 +15,22 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
  */
 public class AliyunServiceImpl extends AbstractS3BaseFileService<AliYunParam> {
 
-    public AliyunServiceImpl(String id, AliYunParam param) {
-        super(id, param);
-    }
+	public AliyunServiceImpl(String id, AliYunParam param) {
+		super(id, param);
+	}
 
-    @Override
-    public void init() {
-        BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-        s3Client = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "oss"))
-                .build();
-    }
+	@Override
+	public void init() {
+		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
+		s3Client = AmazonS3ClientBuilder.standard()
+			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "oss"))
+			.build();
+	}
 
-    @Override
-    public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.ALIYUN;
-    }
+	@Override
+	public StorageTypeEnum getStorageTypeEnum() {
+		return StorageTypeEnum.ALIYUN;
+	}
 
 }

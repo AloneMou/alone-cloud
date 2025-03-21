@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.slider.handler;
 
-
 import com.alone.coder.framework.desensitize.slider.annotation.MobileDesensitize;
 
 /**
@@ -10,18 +9,19 @@ import com.alone.coder.framework.desensitize.slider.annotation.MobileDesensitize
  */
 public class MobileDesensitization extends AbstractSliderDesensitizationHandler<MobileDesensitize> {
 
-    @Override
-    Integer getPrefixKeep(MobileDesensitize annotation) {
-        return annotation.prefixKeep();
-    }
+	@Override
+	Integer getPrefixKeep(MobileDesensitize annotation) {
+		return annotation.prefixKeep();
+	}
 
-    @Override
-    Integer getSuffixKeep(MobileDesensitize annotation) {
-        return annotation.suffixKeep();
-    }
+	@Override
+	Integer getSuffixKeep(MobileDesensitize annotation) {
+		return annotation.suffixKeep();
+	}
 
-    @Override
-    String getReplacer(MobileDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	String getReplacer(MobileDesensitize annotation) {
+		return annotation.replacer();
+	}
+
 }

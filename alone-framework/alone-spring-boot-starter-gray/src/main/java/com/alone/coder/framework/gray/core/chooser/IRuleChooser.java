@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IRuleChooser {
 
-    ServiceInstance choose(List<ServiceInstance> instances);
+	ServiceInstance choose(List<ServiceInstance> instances);
+
 }

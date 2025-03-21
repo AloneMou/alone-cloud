@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.regex.handler;
 
-
 import com.alone.coder.framework.desensitize.regex.annotation.EmailDesensitize;
 
 /**
@@ -10,14 +9,14 @@ import com.alone.coder.framework.desensitize.regex.annotation.EmailDesensitize;
  */
 public class EmailDesensitizationHandler extends AbstractRegexDesensitizationHandler<EmailDesensitize> {
 
-    @Override
-    String getRegex(EmailDesensitize annotation) {
-        return annotation.regex();
-    }
+	@Override
+	String getRegex(EmailDesensitize annotation) {
+		return annotation.regex();
+	}
 
-    @Override
-    String getReplacer(EmailDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	String getReplacer(EmailDesensitize annotation) {
+		return annotation.replacer();
+	}
 
 }

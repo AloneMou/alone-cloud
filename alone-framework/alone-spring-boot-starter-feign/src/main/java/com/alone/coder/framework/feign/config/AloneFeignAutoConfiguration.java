@@ -1,6 +1,5 @@
 package com.alone.coder.framework.feign.config;
 
-
 import com.alone.coder.framework.feign.core.endpoint.FeignClientEndpoint;
 import com.alone.coder.framework.feign.core.interceptor.AloneFeignInnerRequestInterceptor;
 import feign.Feign;
@@ -21,29 +20,25 @@ import org.springframework.context.annotation.Import;
 @AutoConfigureAfter(EnableFeignClients.class)
 public class AloneFeignAutoConfiguration {
 
+	/**
+	 * feign actuator endpoint
+	 * @param context ApplicationContext
+	 * @return FeignClientEndpoint
+	 */
+	@Bean
+	@ConditionalOnMissingBean
+	@ConditionalOnAvailableEndpoint
+	public FeignClientEndpoint feignClientEndpoint(ApplicationContext context) {
+		return new FeignClientEndpoint(context);
+	}
 
-    /**
-     * feign actuator endpoint
-     *
-     * @param context ApplicationContext
-     * @return FeignClientEndpoint
-     */
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnAvailableEndpoint
-    public FeignClientEndpoint feignClientEndpoint(ApplicationContext context) {
-        return new FeignClientEndpoint(context);
-    }
-
-    /**
-     * add inner request header
-     * 内部请求头添加器
-     *
-     * @return AloneFeignInnerRequestInterceptor
-     */
-    @Bean
-    public AloneFeignInnerRequestInterceptor pigFeignInnerRequestInterceptor() {
-        return new AloneFeignInnerRequestInterceptor();
-    }
+	/**
+	 * add inner request header 内部请求头添加器
+	 * @return AloneFeignInnerRequestInterceptor
+	 */
+	@Bean
+	public AloneFeignInnerRequestInterceptor pigFeignInnerRequestInterceptor() {
+		return new AloneFeignInnerRequestInterceptor();
+	}
 
 }

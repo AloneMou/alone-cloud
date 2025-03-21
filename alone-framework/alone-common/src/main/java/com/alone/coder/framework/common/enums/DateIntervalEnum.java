@@ -16,31 +16,29 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum DateIntervalEnum implements ArrayValuable<Integer> {
 
-    DAY(1, "天"),
-    WEEK(2, "周"),
-    MONTH(3, "月"),
-    QUARTER(4, "季度"),
-    YEAR(5, "年")
-    ;
+	DAY(1, "天"), WEEK(2, "周"), MONTH(3, "月"), QUARTER(4, "季度"), YEAR(5, "年");
 
-    public static final Integer[] ARRAYS = Arrays.stream(values()).map(DateIntervalEnum::getInterval).toArray(Integer[]::new);
+	public static final Integer[] ARRAYS = Arrays.stream(values())
+		.map(DateIntervalEnum::getInterval)
+		.toArray(Integer[]::new);
 
-    /**
-     * 类型
-     */
-    private final Integer interval;
-    /**
-     * 名称
-     */
-    private final String name;
+	/**
+	 * 类型
+	 */
+	private final Integer interval;
 
-    @Override
-    public Integer[] array() {
-        return ARRAYS;
-    }
+	/**
+	 * 名称
+	 */
+	private final String name;
 
-    public static DateIntervalEnum valueOf(Integer interval) {
-        return ArrayUtil.firstMatch(item -> item.getInterval().equals(interval), DateIntervalEnum.values());
-    }
+	@Override
+	public Integer[] array() {
+		return ARRAYS;
+	}
+
+	public static DateIntervalEnum valueOf(Integer interval) {
+		return ArrayUtil.firstMatch(item -> item.getInterval().equals(interval), DateIntervalEnum.values());
+	}
 
 }

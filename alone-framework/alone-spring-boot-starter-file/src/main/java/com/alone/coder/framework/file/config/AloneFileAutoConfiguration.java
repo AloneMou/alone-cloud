@@ -13,15 +13,13 @@ import org.springframework.context.annotation.Bean;
 @AutoConfiguration
 public class AloneFileAutoConfiguration {
 
-
-    /**
-     * 存储源上下文
-     *
-     * @return {@link StorageSourceContext }
-     */
-    @Bean
-    public StorageSourceContext storageSourceContext() {
-        return new StorageSourceContext();
-    }
+	/**
+	 * 存储源上下文
+	 * @return {@link StorageSourceContext }
+	 */
+	@Bean
+	public StorageSourceContext storageSourceContext() {
+		return new StorageSourceContext();
+	}
 
 }

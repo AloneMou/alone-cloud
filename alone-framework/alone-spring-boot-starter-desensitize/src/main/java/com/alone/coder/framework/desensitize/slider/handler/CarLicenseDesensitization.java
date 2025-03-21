@@ -1,6 +1,5 @@
 package com.alone.coder.framework.desensitize.slider.handler;
 
-
 import com.alone.coder.framework.desensitize.slider.annotation.CarLicenseDesensitize;
 
 /**
@@ -9,18 +8,20 @@ import com.alone.coder.framework.desensitize.slider.annotation.CarLicenseDesensi
  * @author AgoniMou
  */
 public class CarLicenseDesensitization extends AbstractSliderDesensitizationHandler<CarLicenseDesensitize> {
-    @Override
-    Integer getPrefixKeep(CarLicenseDesensitize annotation) {
-        return annotation.prefixKeep();
-    }
 
-    @Override
-    Integer getSuffixKeep(CarLicenseDesensitize annotation) {
-        return annotation.suffixKeep();
-    }
+	@Override
+	Integer getPrefixKeep(CarLicenseDesensitize annotation) {
+		return annotation.prefixKeep();
+	}
 
-    @Override
-    String getReplacer(CarLicenseDesensitize annotation) {
-        return annotation.replacer();
-    }
+	@Override
+	Integer getSuffixKeep(CarLicenseDesensitize annotation) {
+		return annotation.suffixKeep();
+	}
+
+	@Override
+	String getReplacer(CarLicenseDesensitize annotation) {
+		return annotation.replacer();
+	}
+
 }

@@ -43,9 +43,9 @@ public class AloneRequestGlobalFilter implements GlobalFilter, Ordered {
 		// 1. 清洗请求头中from 参数
 		ServerHttpRequest request = exchange.getRequest().mutate().headers(httpHeaders -> {
 			httpHeaders.remove(SecurityConstants.FROM);
-//			// 设置请求时间
-//			httpHeaders.put(CommonConstants.REQUEST_START_TIME,
-//					Collections.singletonList(String.valueOf(System.currentTimeMillis())));
+			// // 设置请求时间
+			// httpHeaders.put(CommonConstants.REQUEST_START_TIME,
+			// Collections.singletonList(String.valueOf(System.currentTimeMillis())));
 		}).build();
 
 		// 2. 重写StripPrefix

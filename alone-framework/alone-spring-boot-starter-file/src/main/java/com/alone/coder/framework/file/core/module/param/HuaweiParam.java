@@ -10,4 +10,5 @@ import lombok.Getter;
  */
 @Getter
 public class HuaweiParam extends S3BaseParam {
+
 }

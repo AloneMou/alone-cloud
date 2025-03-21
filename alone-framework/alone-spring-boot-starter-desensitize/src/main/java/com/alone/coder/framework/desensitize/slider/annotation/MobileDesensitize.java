@@ -12,25 +12,25 @@ import java.lang.annotation.*;
  * @author AgoniMou
  */
 @Documented
-@Target({ElementType.FIELD})
+@Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 @JacksonAnnotationsInside
 @DesensitizeBy(handler = MobileDesensitization.class)
 public @interface MobileDesensitize {
 
-    /**
-     * 前缀保留长度
-     */
-    int prefixKeep() default 3;
+	/**
+	 * 前缀保留长度
+	 */
+	int prefixKeep() default 3;
 
-    /**
-     * 后缀保留长度
-     */
-    int suffixKeep() default 4;
+	/**
+	 * 后缀保留长度
+	 */
+	int suffixKeep() default 4;
 
-    /**
-     * 替换规则，手机号;比如：13248765917 脱敏之后为 132****5917
-     */
-    String replacer() default "*";
+	/**
+	 * 替换规则，手机号;比如：13248765917 脱敏之后为 132****5917
+	 */
+	String replacer() default "*";
 
 }

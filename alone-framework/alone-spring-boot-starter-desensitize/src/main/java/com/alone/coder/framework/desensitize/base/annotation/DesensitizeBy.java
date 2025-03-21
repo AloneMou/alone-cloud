@@ -19,10 +19,10 @@ import java.lang.annotation.*;
 @JsonSerialize(using = StringDesensitizeSerializer.class) // 指定序列化器
 public @interface DesensitizeBy {
 
-    /**
-     * 脱敏处理器
-     */
-    @SuppressWarnings("rawtypes")
-    Class<? extends DesensitizationHandler> handler();
+	/**
+	 * 脱敏处理器
+	 */
+	@SuppressWarnings("rawtypes")
+	Class<? extends DesensitizationHandler> handler();
 
 }

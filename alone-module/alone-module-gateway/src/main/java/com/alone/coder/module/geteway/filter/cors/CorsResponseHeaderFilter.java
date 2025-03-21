@@ -21,25 +21,30 @@ import java.util.ArrayList;
 @Component
 public class CorsResponseHeaderFilter implements GlobalFilter, Ordered {
 
-    @Override
-    public int getOrder() {
-        // 指定此过滤器位于 NettyWriteResponseFilter 之后
-        // 即待处理完响应体后接着处理响应头
-        return NettyWriteResponseFilter.WRITE_RESPONSE_FILTER_ORDER + 1;
-    }
+	@Override
+	public int getOrder() {
+		// 指定此过滤器位于 NettyWriteResponseFilter 之后
+		// 即待处理完响应体后接着处理响应头
+		return NettyWriteResponseFilter.WRITE_RESPONSE_FILTER_ORDER + 1;
+	}
 
-    @Override
-    public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return chain.filter(exchange).then(Mono.defer(() -> {
-            exchange.getResponse().getHeaders().entrySet().stream()
-                    .filter(kv -> (kv.getValue() != null && kv.getValue().size() > 1))
-                    .filter(kv -> (kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN)
-                            || kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS)))
-                    .forEach(kv -> kv.setValue(new ArrayList<String>() {{
-                        add(kv.getValue().get(0));
-                    }}));
-            return chain.filter(exchange);
-        }));
-    }
+	@Override
+	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+		return chain.filter(exchange).then(Mono.defer(() -> {
+			exchange.getResponse()
+				.getHeaders()
+				.entrySet()
+				.stream()
+				.filter(kv -> (kv.getValue() != null && kv.getValue().size() > 1))
+				.filter(kv -> (kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN)
+						|| kv.getKey().equals(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS)))
+				.forEach(kv -> kv.setValue(new ArrayList<String>() {
+					{
+						add(kv.getValue().get(0));
+					}
+				}));
+			return chain.filter(exchange);
+		}));
+	}
 
 }

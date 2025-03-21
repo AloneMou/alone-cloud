@@ -16,27 +16,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class S3ServiceImpl extends AbstractS3BaseFileService<S3Param> {
 
-    public S3ServiceImpl(String configId, S3Param param) {
-        super(configId, param);
-    }
+	public S3ServiceImpl(String configId, S3Param param) {
+		super(configId, param);
+	}
 
-    @Override
-    public void init() {
-        boolean isPathStyle = "path-style".equals(param.getPathStyle());
-        String region = param.getRegion();
-        if (StrUtil.isEmpty(param.getRegion()) && StrUtil.isNotEmpty(param.getEndPoint())) {
-            region = param.getEndPoint().split("\\.")[1];
-        }
-        BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-        s3Client = AmazonS3ClientBuilder.standard()
-                .withPathStyleAccessEnabled(isPathStyle)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), region)).build();
-    }
+	@Override
+	public void init() {
+		boolean isPathStyle = "path-style".equals(param.getPathStyle());
+		String region = param.getRegion();
+		if (StrUtil.isEmpty(param.getRegion()) && StrUtil.isNotEmpty(param.getEndPoint())) {
+			region = param.getEndPoint().split("\\.")[1];
+		}
+		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
+		s3Client = AmazonS3ClientBuilder.standard()
+			.withPathStyleAccessEnabled(isPathStyle)
+			.withCredentials(new AWSStaticCredentialsProvider(credentials))
+			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), region))
+			.build();
+	}
 
-    @Override
-    public StorageTypeEnum getStorageTypeEnum() {
-        return StorageTypeEnum.S3;
-    }
+	@Override
+	public StorageTypeEnum getStorageTypeEnum() {
+		return StorageTypeEnum.S3;
+	}
 
 }
