@@ -21,6 +21,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.version>3.11.0</maven.compiler.version>
+        <dependency-check.version>12.1.0</dependency-check.version>
         <!--统一依赖管理-->
         <lombok.version>1.18.36</lombok.version>
         <spring.boot.version>3.4.1</spring.boot.version>
@@ -36,6 +37,7 @@
         <docker.plugin.version>0.33.0</docker.plugin.version>
         <!--  默认忽略docker构建 -->
         <docker.skip>false</docker.skip>
+        <nvd.api.key>YOUR_API_KEY</nvd.api.key>
     </properties>
 
     <dependencyManagement>
@@ -118,6 +120,24 @@
                         </compilerArgs>
                     </configuration>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>${dependency-check.version}</version>
+                    <configuration>
+                        <!-- 指定报告格式和输出目录 -->
+                        <autoUpdate>true</autoUpdate>
+                        <nvdApiKey>${nvd.api.key}</nvdApiKey>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -132,6 +152,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+            </plugin>
+
+
         </plugins>
     </build>
 </project>
