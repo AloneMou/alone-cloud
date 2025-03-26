@@ -2,10 +2,7 @@ package com.alone.coder.framework.common.util.validation;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Assert;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
+import jakarta.validation.*;
 import org.springframework.util.StringUtils;
 
 import java.util.Set;
@@ -49,6 +46,22 @@ public class ValidationUtils {
 		if (CollUtil.isNotEmpty(constraintViolations)) {
 			throw new ConstraintViolationException(constraintViolations);
 		}
+	}
+
+	/**
+	 * Validates all constraints on {@code object}.
+	 * @param object object to validate
+	 * @param <T> the type of the object to validate
+	 * @return constraint violations or an empty set if none
+	 * @throws IllegalArgumentException if object is {@code null} or if {@code null} is
+	 * passed to the varargs groups
+	 * @throws ValidationException if a non-recoverable error happens during the
+	 * validation process
+	 */
+	public static <T> Set<ConstraintViolation<T>> validate(T object) {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		Assert.notNull(validator);
+		return validator.validate(object);
 	}
 
 }

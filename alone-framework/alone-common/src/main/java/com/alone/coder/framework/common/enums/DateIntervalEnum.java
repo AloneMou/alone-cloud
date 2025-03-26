@@ -20,9 +20,7 @@ public enum DateIntervalEnum implements ArrayValuable<Integer> {
 
 	DAY(1, "天"), WEEK(2, "周"), MONTH(3, "月"), QUARTER(4, "季度"), YEAR(5, "年");
 
-	public static final Integer[] ARRAYS = stream(values())
-		.map(DateIntervalEnum::getInterval)
-		.toArray(Integer[]::new);
+	public static final Integer[] ARRAYS = stream(values()).map(DateIntervalEnum::getInterval).toArray(Integer[]::new);
 
 	/**
 	 * 类型

@@ -18,9 +18,7 @@ public enum CommonStatusEnum implements ArrayValuable<Integer> {
 
 	ENABLE(0, "开启"), DISABLE(1, "关闭");
 
-	public static final Integer[] ARRAYS = stream(values())
-		.map(CommonStatusEnum::getStatus)
-		.toArray(Integer[]::new);
+	public static final Integer[] ARRAYS = stream(values()).map(CommonStatusEnum::getStatus).toArray(Integer[]::new);
 
 	/**
 	 * 状态值

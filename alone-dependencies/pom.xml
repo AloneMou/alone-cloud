@@ -55,6 +55,7 @@
 
         <lombok.version>1.18.36</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <fast.excel.version>1.1.0</fast.excel.version>
     </properties>
 
     <dependencyManagement>
@@ -314,6 +315,12 @@
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.idev.excel</groupId>
+                <artifactId>fastexcel</artifactId>
+                <version>${fast.excel.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
