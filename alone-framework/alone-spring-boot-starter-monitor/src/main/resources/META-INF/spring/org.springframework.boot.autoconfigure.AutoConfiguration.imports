@@ -1,0 +1,2 @@
+com.alone.coder.framework.tracer.config.AloneMetricsAutoConfiguration
+com.alone.coder.framework.tracer.config.AloneTracerAutoConfiguration
