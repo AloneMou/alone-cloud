@@ -10,6 +10,11 @@
     </parent>
 
     <artifactId>alone-module-system</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>alone-module-system-api</module>
+        <module>alone-module-system-biz</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

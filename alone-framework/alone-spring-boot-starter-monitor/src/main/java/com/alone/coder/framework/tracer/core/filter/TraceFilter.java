@@ -16,18 +16,18 @@ import java.io.IOException;
  */
 public class TraceFilter extends OncePerRequestFilter {
 
-    /**
-     * Header 名 - 链路追踪编号
-     */
-    private static final String HEADER_NAME_TRACE_ID = "trace-id";
+	/**
+	 * Header 名 - 链路追踪编号
+	 */
+	private static final String HEADER_NAME_TRACE_ID = "trace-id";
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        // 设置响应 traceId
-        response.addHeader(HEADER_NAME_TRACE_ID, TracerUtils.getTraceId());
-        // 继续过滤
-        chain.doFilter(request, response);
-    }
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		// 设置响应 traceId
+		response.addHeader(HEADER_NAME_TRACE_ID, TracerUtils.getTraceId());
+		// 继续过滤
+		chain.doFilter(request, response);
+	}
 
 }

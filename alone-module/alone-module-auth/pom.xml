@@ -11,10 +11,38 @@
 
     <artifactId>alone-module-auth</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <dependencies>
+        <!--注册中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-gray</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-encrypt</artifactId>
+        </dependency>
+        <!-- 滑块验证码 -->
+        <dependency>
+            <groupId>com.xingyuv</groupId>
+            <artifactId>spring-boot-starter-captcha-plus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-security</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

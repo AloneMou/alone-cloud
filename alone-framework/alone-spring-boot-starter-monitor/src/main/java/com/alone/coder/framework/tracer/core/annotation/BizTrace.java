@@ -10,33 +10,34 @@ import java.lang.annotation.*;
  *
  * @author 麻薯
  */
-@Target({ElementType.METHOD})
+@Target({ ElementType.METHOD })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 public @interface BizTrace {
 
-    /**
-     * 业务编号 tag 名
-     */
-    String ID_TAG = "biz.id";
-    /**
-     * 业务类型 tag 名
-     */
-    String TYPE_TAG = "biz.type";
+	/**
+	 * 业务编号 tag 名
+	 */
+	String ID_TAG = "biz.id";
 
-    /**
-     * @return 操作名
-     */
-    String operationName() default "";
+	/**
+	 * 业务类型 tag 名
+	 */
+	String TYPE_TAG = "biz.type";
 
-    /**
-     * @return 业务编号
-     */
-    String id();
+	/**
+	 * @return 操作名
+	 */
+	String operationName() default "";
 
-    /**
-     * @return 业务类型
-     */
-    String type();
+	/**
+	 * @return 业务编号
+	 */
+	String id();
+
+	/**
+	 * @return 业务类型
+	 */
+	String type();
 
 }

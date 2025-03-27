@@ -14,14 +14,14 @@ import org.springframework.context.annotation.Bean;
  * @author 芋道源码
  */
 @AutoConfiguration
-@ConditionalOnClass({MeterRegistryCustomizer.class})
+@ConditionalOnClass({ MeterRegistryCustomizer.class })
 @ConditionalOnProperty(prefix = "alone.tracer.metrics", value = "enable", matchIfMissing = true)
 public class AloneMetricsAutoConfiguration {
 
-    @Bean
-    public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags(
-            @Value("${spring.application.name}") String applicationName) {
-        return registry -> registry.config().commonTags("application", applicationName);
-    }
+	@Bean
+	public MeterRegistryCustomizer<MeterRegistry> metricsCommonTags(
+			@Value("${spring.application.name}") String applicationName) {
+		return registry -> registry.config().commonTags("application", applicationName);
+	}
 
 }

@@ -56,6 +56,8 @@
         <lombok.version>1.18.36</lombok.version>
         <mapstruct.version>1.6.3</mapstruct.version>
         <fast.excel.version>1.1.0</fast.excel.version>
+        <captcha.version>1.3.0</captcha.version>
+        <captcha.image.version>2.2.3</captcha.image.version>
     </properties>
 
     <dependencyManagement>
@@ -322,6 +324,7 @@
                 <artifactId>fastexcel</artifactId>
                 <version>${fast.excel.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>
