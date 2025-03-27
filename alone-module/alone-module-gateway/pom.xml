@@ -36,12 +36,10 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-redis</artifactId>
         </dependency>
-
         <!--接口文档-->
         <dependency>
             <groupId>org.springdoc</groupId>
