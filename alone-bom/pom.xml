@@ -80,6 +80,11 @@
                 <artifactId>alone-spring-boot-starter-security</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.alone.coder</groupId>
+                <artifactId>alone-spring-boot-starter-web</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alone.coder</groupId>

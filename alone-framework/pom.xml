@@ -27,6 +27,7 @@
         <module>alone-spring-boot-starter-dynamic-route</module>
         <module>alone-spring-boot-starter-payment</module>
         <module>alone-spring-boot-starter-security</module>
+        <module>alone-spring-boot-starter-web</module>
     </modules>
 
 </project>

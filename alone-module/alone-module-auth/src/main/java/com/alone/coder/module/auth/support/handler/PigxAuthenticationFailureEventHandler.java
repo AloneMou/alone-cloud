@@ -35,9 +35,7 @@ public class PigxAuthenticationFailureEventHandler implements AuthenticationFail
 
     private final StringRedisTemplate redisTemplate;
 
-    private final ApplicationEventPublisher publisher;
-
-    private final AdminUserApi adminUserApi;
+//    private final AdminUserApi adminUserApi;
 
     /**
      * 登录错误次数

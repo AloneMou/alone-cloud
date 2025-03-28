@@ -1,6 +1,8 @@
 package com.alone.coder.framework.feign.core.annotation;
 
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.core.annotation.AliasFor;
 
@@ -35,7 +37,7 @@ public @interface EnableAloneFeignClients {
 	 * @return the array of 'basePackages'.
 	 */
 	@AliasFor(annotation = EnableFeignClients.class)
-	String[] basePackages() default { "com.pig4cloud.pigx" };
+	String[] basePackages() default { "com.alone.coder.module" };
 
 	/**
 	 * Type-safe alternative to {@link #basePackages()} for specifying the packages to

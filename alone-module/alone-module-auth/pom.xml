@@ -30,10 +30,6 @@
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-gray</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.alone.coder</groupId>
-            <artifactId>alone-spring-boot-starter-encrypt</artifactId>
-        </dependency>
         <!-- 滑块验证码 -->
         <dependency>
             <groupId>com.xingyuv</groupId>
@@ -42,6 +38,16 @@
         <dependency>
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--freemarker-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--web 模块-->
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
