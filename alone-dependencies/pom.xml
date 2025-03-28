@@ -239,6 +239,11 @@
                 <artifactId>swagger-core-jakarta</artifactId>
                 <version>${swagger.core.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId> <!-- 接口文档 UI：knife4j【网关专属】 -->
+                <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
+                <version>4.5.0</version> <!-- TODO 芋艿：等 4.5.0 => 4.6.0 -->
+            </dependency>
             <!--Redisson分布式锁-->
             <dependency>
                 <groupId>org.redisson</groupId>
