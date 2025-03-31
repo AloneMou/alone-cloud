@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientConfiguration;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClients;
 import org.springframework.cloud.loadbalancer.core.ReactorLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
@@ -25,55 +26,46 @@ import java.lang.reflect.InvocationTargetException;
  *
  */
 @Slf4j
-@ConditionalOnProperty(value = "alone.gray.rule.enabled", matchIfMissing = true)
-public class GrayLoadBalancerAutoConfiguration extends LoadBalancerClientConfiguration {
+@ConditionalOnProperty(value = "alone.gray.rule.enabled", havingValue = "true")
+@LoadBalancerClients(defaultConfiguration = GrayLoadbalancerConfig.class)
+public class GrayLoadBalancerAutoConfiguration {
 
-	private final String CONFIG_LOADBALANCE_ISOLATION = "alone.gray.rule.isolation";
+    private final String CONFIG_LOADBALANCE_ISOLATION = "alone.gray.rule.isolation";
 
-	@Bean
-	public RequestInterceptor versionFeignRequestInterceptor() {
-		return new VersionFeignRequestInterceptor();
-	}
+    @Bean
+    public RequestInterceptor versionFeignRequestInterceptor() {
+        log.debug("load version feign interceptor");
+        return new VersionFeignRequestInterceptor();
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(IRuleChooser.class)
-	@ConditionalOnProperty(prefix = CONFIG_LOADBALANCE_ISOLATION, value = "chooser")
-	public IRuleChooser customRuleChooser(Environment environment, ApplicationContext context) {
-		IRuleChooser chooser = new RoundRuleChooser();
-		String CONFIG_LOADBALANCE_ISOLATION_CHOOSER = CONFIG_LOADBALANCE_ISOLATION + ".chooser";
-		if (environment.containsProperty(CONFIG_LOADBALANCE_ISOLATION_CHOOSER)) {
-			String chooserRuleClassString = environment.getProperty(CONFIG_LOADBALANCE_ISOLATION_CHOOSER);
-			if (StrUtil.isNotBlank(chooserRuleClassString)) {
-				try {
-					Class<?> ruleClass = ClassUtils.forName(chooserRuleClassString, context.getClassLoader());
-					chooser = (IRuleChooser) ruleClass.getDeclaredConstructor().newInstance();
-				}
-				catch (ClassNotFoundException e) {
-					log.error("没有找到定义的选择器，将使用内置的选择器", e);
-				}
-				catch (InstantiationException | IllegalAccessException | InvocationTargetException
-						| NoSuchMethodException e) {
-					log.error("没法创建定义的选择器，将使用内置的选择器", e);
-				}
-			}
-		}
-		return chooser;
-	}
+    @Bean
+    @ConditionalOnMissingBean(IRuleChooser.class)
+    @ConditionalOnProperty(prefix = CONFIG_LOADBALANCE_ISOLATION, value = "chooser")
+    public IRuleChooser customRuleChooser(Environment environment, ApplicationContext context) {
+        IRuleChooser chooser = new RoundRuleChooser();
+        String CONFIG_LOADBALANCE_ISOLATION_CHOOSER = CONFIG_LOADBALANCE_ISOLATION + ".chooser";
+        if (environment.containsProperty(CONFIG_LOADBALANCE_ISOLATION_CHOOSER)) {
+            String chooserRuleClassString = environment.getProperty(CONFIG_LOADBALANCE_ISOLATION_CHOOSER);
+            if (StrUtil.isNotBlank(chooserRuleClassString)) {
+                try {
+                    Class<?> ruleClass = ClassUtils.forName(chooserRuleClassString, context.getClassLoader());
+                    chooser = (IRuleChooser) ruleClass.getDeclaredConstructor().newInstance();
+                } catch (ClassNotFoundException e) {
+                    log.error("没有找到定义的选择器，将使用内置的选择器", e);
+                } catch (InstantiationException | IllegalAccessException | InvocationTargetException
+                         | NoSuchMethodException e) {
+                    log.error("没法创建定义的选择器，将使用内置的选择器", e);
+                }
+            }
+        }
+        return chooser;
+    }
 
-	@Bean
-	@ConditionalOnMissingBean(value = IRuleChooser.class)
-	public IRuleChooser defaultRuleChooser() {
-		return new RoundRuleChooser();
-	}
-
-	@Bean
-	@ConditionalOnMissingBean(value = IRuleChooser.class)
-	public ReactorLoadBalancer<ServiceInstance> reactorServiceInstanceLoadBalancer(Environment environment,
-			LoadBalancerClientFactory loadBalancerClientFactory, IRuleChooser chooser) {
-		String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
-		return new GrayRoundRobinLoadBalancer(
-				loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class), name, chooser);
-	}
+    @Bean
+    @ConditionalOnMissingBean(value = IRuleChooser.class)
+    public IRuleChooser defaultRuleChooser() {
+        return new RoundRuleChooser();
+    }
 
 
 }

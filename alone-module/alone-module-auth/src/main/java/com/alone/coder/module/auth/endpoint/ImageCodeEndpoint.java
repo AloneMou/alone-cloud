@@ -2,6 +2,7 @@ package com.alone.coder.module.auth.endpoint;
 
 import cn.hutool.core.util.StrUtil;
 import com.alone.coder.framework.common.util.servlet.ServletUtils;
+import com.alone.coder.module.system.api.user.AdminUserApi;
 import com.xingyuv.captcha.model.common.ResponseModel;
 import com.xingyuv.captcha.model.vo.CaptchaVO;
 import com.xingyuv.captcha.service.CaptchaService;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ImageCodeEndpoint {
 
     private final CaptchaService captchaService;
+    private final AdminUserApi adminUserApi;
 
     @PostMapping({"/get"})
     @Operation(summary = "获得验证码")
@@ -34,6 +36,7 @@ public class ImageCodeEndpoint {
     public ResponseModel get(@RequestBody CaptchaVO data, HttpServletRequest request) {
         assert request.getRemoteHost() != null;
         data.setBrowserInfo(getRemoteId(request));
+        adminUserApi.info("123456");
         return captchaService.get(data);
     }
 

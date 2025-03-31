@@ -18,7 +18,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 /**
  * @author lengleng
  */
-@RequiredArgsConstructor
 @EnableConfigurationProperties(PermitAllUrlProperties.class)
 public class AloneResourceServerAutoConfiguration {
 
@@ -26,7 +25,7 @@ public class AloneResourceServerAutoConfiguration {
 	 * 鉴权具体的实现逻辑
 	 * @return （#pms.xxx）
 	 */
-	@Bean("ss")
+	@Bean("pms")
 	public PermissionService permissionService() {
 		return new PermissionServiceImpl();
 	}
@@ -58,15 +57,15 @@ public class AloneResourceServerAutoConfiguration {
 	public AccessDeniedHandler accessDeniedHandler() {
 		return new AccessDeniedHandlerImpl();
 	}
-
-	/**
-	 * 资源服务器toke内省处理器
-	 * @param authorizationService token 存储实现
-	 * @return TokenIntrospector
-	 */
-	@Bean
-	public OpaqueTokenIntrospector opaqueTokenIntrospector(OAuth2AuthorizationService authorizationService) {
-		return new CustomOpaqueTokenIntrospector(authorizationService);
-	}
+//
+//	/**
+//	 * 资源服务器toke内省处理器
+//	 * @param authorizationService token 存储实现
+//	 * @return TokenIntrospector
+//	 */
+//	@Bean
+//	public OpaqueTokenIntrospector opaqueTokenIntrospector(OAuth2AuthorizationService authorizationService) {
+//		return new CustomOpaqueTokenIntrospector(authorizationService);
+//	}
 
 }

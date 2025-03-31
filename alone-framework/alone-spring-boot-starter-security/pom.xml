@@ -17,6 +17,10 @@
             <artifactId>alone-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-redis</artifactId>
         </dependency>
