@@ -1,0 +1,2 @@
+com.alone.coder.framework.datasource.config.AloneDataSourceAutoConfiguration
+com.alone.coder.framework.mybatis.config.AloneMybatisAutoConfiguration

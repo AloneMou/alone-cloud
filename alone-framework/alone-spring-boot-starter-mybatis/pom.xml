@@ -16,6 +16,15 @@
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-security</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- DB 相关 -->
         <dependency>
             <groupId>com.mysql</groupId>
