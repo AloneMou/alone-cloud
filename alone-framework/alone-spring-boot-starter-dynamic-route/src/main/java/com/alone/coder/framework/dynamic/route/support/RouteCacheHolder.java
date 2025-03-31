@@ -17,7 +17,7 @@ import java.util.List;
 @UtilityClass
 public class RouteCacheHolder {
 
-    private Cache<String, RouteDefinitionVo> cache = CacheUtil.newLFUCache(200);
+    private final Cache<String, RouteDefinitionVo> cache = CacheUtil.newLFUCache(200);
 
     /**
      * 获取缓存的全部对象
@@ -26,7 +26,7 @@ public class RouteCacheHolder {
      */
     public List<RouteDefinitionVo> getRouteList() {
         List<RouteDefinitionVo> routeList = new ArrayList<>();
-        cache.forEach(route -> routeList.add(route));
+        cache.forEach(routeList::add);
         return routeList;
     }
 

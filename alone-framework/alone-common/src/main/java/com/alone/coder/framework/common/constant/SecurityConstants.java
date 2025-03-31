@@ -18,6 +18,12 @@ public interface SecurityConstants {
     String BCRYPT = "{bcrypt}";
 
     /**
+     * {noop} 加密的特征码
+     */
+    String NOOP = "{noop}";
+
+
+    /**
      * 客户端编号
      */
     String CLIENT_ID = "client_id";

@@ -3,3 +3,4 @@ com.alone.coder.framework.security.core.service.AloneRedisOAuth2AuthorizationSer
 com.alone.coder.framework.security.core.service.AloneRedisOAuth2AuthorizationConsentService
 com.alone.coder.framework.security.core.aop.PigxSecurityInnerAspect
 com.alone.coder.framework.security.config.PigxSecurityMessageSourceConfiguration
+com.alone.coder.framework.security.core.service.AloneRemoteRegisteredClientRepository

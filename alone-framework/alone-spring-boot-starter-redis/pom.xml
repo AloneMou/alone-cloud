@@ -16,6 +16,10 @@
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-system</artifactId>
+        </dependency>
         <!-- DB 相关 -->
         <dependency>
             <groupId>org.redisson</groupId>

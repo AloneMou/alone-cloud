@@ -26,5 +26,5 @@ alone:
   gray:
     rule:
       enabled: true
-      isolation:
-        chooser: com.alone.coder.framework.gray.core.chooser.RandomRuleChooser
+#      isolation:
+#        chooser: com.alone.coder.framework.gray.core.chooser.RandomRuleChooser

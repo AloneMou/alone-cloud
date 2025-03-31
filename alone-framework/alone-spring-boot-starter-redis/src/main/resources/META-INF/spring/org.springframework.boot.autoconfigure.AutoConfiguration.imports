@@ -1,2 +1,4 @@
 com.alone.coder.framework.redis.config.AloneRedisAutoConfiguration
 com.alone.coder.framework.redis.config.AloneCacheAutoConfiguration
+com.alone.coder.framework.redis.config.AloneRedisMQConsumerAutoConfiguration
+com.alone.coder.framework.redis.config.AloneRedisMQProducerAutoConfiguration

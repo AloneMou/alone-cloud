@@ -7,10 +7,10 @@ import com.alone.coder.framework.gray.core.interceptor.VersionFeignRequestInterc
 import com.alone.coder.framework.gray.core.rule.GrayRoundRobinLoadBalancer;
 import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClientConfiguration;
 import org.springframework.cloud.loadbalancer.core.ReactorLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
@@ -25,9 +25,8 @@ import java.lang.reflect.InvocationTargetException;
  *
  */
 @Slf4j
-@AutoConfiguration
 @ConditionalOnProperty(value = "alone.gray.rule.enabled", matchIfMissing = true)
-public class GrayLoadBalancerAutoConfiguration {
+public class GrayLoadBalancerAutoConfiguration extends LoadBalancerClientConfiguration {
 
 	private final String CONFIG_LOADBALANCE_ISOLATION = "alone.gray.rule.isolation";
 
@@ -68,12 +67,13 @@ public class GrayLoadBalancerAutoConfiguration {
 	}
 
 	@Bean
-	@ConditionalOnMissingBean
+	@ConditionalOnMissingBean(value = IRuleChooser.class)
 	public ReactorLoadBalancer<ServiceInstance> reactorServiceInstanceLoadBalancer(Environment environment,
 			LoadBalancerClientFactory loadBalancerClientFactory, IRuleChooser chooser) {
 		String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
 		return new GrayRoundRobinLoadBalancer(
 				loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class), name, chooser);
 	}
+
 
 }
