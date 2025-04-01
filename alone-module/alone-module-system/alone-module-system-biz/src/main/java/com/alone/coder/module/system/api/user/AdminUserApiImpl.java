@@ -14,6 +14,6 @@ public class AdminUserApiImpl implements AdminUserApi {
     @Override
     @Inner(value = false)
     public CommonResult<UserInfo> info(@PathVariable("username") String username) {
-        return null;
+        return CommonResult.success(null);
     }
 }

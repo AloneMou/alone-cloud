@@ -26,7 +26,7 @@ import java.util.Collection;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class PigxOAuthRequestInterceptor implements RequestInterceptor {
+public class AloneOAuthRequestInterceptor implements RequestInterceptor {
 
 	private final BearerTokenResolver tokenResolver;
 

@@ -1,11 +1,13 @@
 package com.alone.coder.framework.security.config;
 
 import com.alone.coder.framework.security.core.auth.CustomOpaqueTokenIntrospector;
+import com.alone.coder.framework.security.core.auth.ResourceAuthExceptionEntryPoint;
 import com.alone.coder.framework.security.core.handler.AccessDeniedHandlerImpl;
 import com.alone.coder.framework.security.core.handler.AuthenticationEntryPointImpl;
 import com.alone.coder.framework.security.core.resolve.BearerTokenExtractor;
 import com.alone.coder.framework.security.core.service.PermissionService;
 import com.alone.coder.framework.security.core.service.PermissionServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
@@ -49,6 +51,17 @@ public class AloneResourceServerAutoConfiguration {
 	@Bean
 	public AuthenticationEntryPoint authenticationEntryPoint(MessageSource securityMessageSource) {
 		return new AuthenticationEntryPointImpl(securityMessageSource);
+	}
+
+	/**
+	 * 资源服务器异常处理
+	 * @param objectMapper jackson 输出对象
+	 * @param securityMessageSource 自定义国际化处理器
+	 * @return ResourceAuthExceptionEntryPoint
+	 */
+	@Bean
+	public ResourceAuthExceptionEntryPoint resourceAuthExceptionEntryPoint(																		   MessageSource securityMessageSource) {
+		return new ResourceAuthExceptionEntryPoint( securityMessageSource);
 	}
 
 	/**

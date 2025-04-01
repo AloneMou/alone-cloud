@@ -32,7 +32,7 @@ import java.util.Optional;
  * @author lengleng
  * @date 2022-06-04
  */
-public class PigxDaoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+public class AloneDaoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
 
     /**
      * The plaintext password used to perform PasswordEncoder#matches(CharSequence,
@@ -58,7 +58,7 @@ public class PigxDaoAuthenticationProvider extends AbstractUserDetailsAuthentica
     @Setter
     private UserDetailsPasswordService userDetailsPasswordService;
 
-    public PigxDaoAuthenticationProvider() {
+    public AloneDaoAuthenticationProvider() {
         setMessageSource(SpringUtil.getBean("securityMessageSource"));
         setPasswordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }

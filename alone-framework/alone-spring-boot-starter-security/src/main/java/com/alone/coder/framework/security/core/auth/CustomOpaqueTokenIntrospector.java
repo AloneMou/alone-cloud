@@ -74,11 +74,11 @@ public class CustomOpaqueTokenIntrospector implements OpaqueTokenIntrospector {
 		}
 
 		// 注入客户端信息，方便上下文中获取
-		LoginUser pigxUser = (LoginUser) userDetails;
-		Objects.requireNonNull(pigxUser)
+		LoginUser loginUser = (LoginUser) userDetails;
+		Objects.requireNonNull(loginUser)
 			.getAttributes()
 			.put(SecurityConstants.CLIENT_ID, oldAuthorization.getRegisteredClientId());
-		return pigxUser;
+		return loginUser;
 	}
 
 }

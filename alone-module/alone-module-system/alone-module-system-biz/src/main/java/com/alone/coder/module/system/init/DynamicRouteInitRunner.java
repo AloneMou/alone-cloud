@@ -87,7 +87,7 @@ public class DynamicRouteInitRunner implements InitializingBean {
         for (SystemRouteDO route : routeLs) {
             RouteDefinitionVO vo = new RouteDefinitionVO();
             vo.setRouteName(route.getName());
-            vo.setId("auth-server");
+            vo.setId(route.getId().toString());
             vo.setUri(URI.create(route.getUri()));
             vo.setOrder(route.getSort());
 
@@ -99,7 +99,7 @@ public class DynamicRouteInitRunner implements InitializingBean {
             log.info("加载路由ID：{},{}", route.getId(), vo);
             redisTemplate.setHashValueSerializer(new Jackson2JsonRedisSerializer<>(RouteDefinitionVO.class));
             HashOperations<String, String, RouteDefinitionVO> stringStringValueOperations = redisTemplate.opsForHash();
-            stringStringValueOperations.put(ROUTE_KEY, "auth-server", vo);
+            stringStringValueOperations.put(ROUTE_KEY, route.getId().toString(), vo);
         }
         // 通知网关重置路由
         redisTemplate.convertAndSend(ROUTE_JVM_RELOAD_TOPIC, "");

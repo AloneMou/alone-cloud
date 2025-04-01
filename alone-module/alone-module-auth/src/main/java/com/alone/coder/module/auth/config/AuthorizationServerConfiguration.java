@@ -6,12 +6,12 @@ import com.alone.coder.framework.security.core.handler.FormAuthenticationFailure
 import com.alone.coder.module.auth.support.CustomeOAuth2AccessTokenGenerator;
 import com.alone.coder.module.auth.support.core.CustomeOAuth2TokenCustomizer;
 import com.alone.coder.module.auth.support.core.FormIdentityLoginConfigurer;
-import com.alone.coder.module.auth.support.core.PigxDaoAuthenticationProvider;
-import com.alone.coder.module.auth.support.core.PigxOAuth2RefreshTokenAuthenticationConverter;
+import com.alone.coder.module.auth.support.core.AloneDaoAuthenticationProvider;
+import com.alone.coder.module.auth.support.core.AloneOAuth2RefreshTokenAuthenticationConverter;
 import com.alone.coder.module.auth.support.filter.PasswordDecoderFilter;
 import com.alone.coder.module.auth.support.filter.ValidateCodeFilter;
-import com.alone.coder.module.auth.support.handler.PigxAuthenticationFailureEventHandler;
-import com.alone.coder.module.auth.support.handler.PigxAuthenticationSuccessEventHandler;
+import com.alone.coder.module.auth.support.handler.AloneAuthenticationFailureEventHandler;
+import com.alone.coder.module.auth.support.handler.AloneAuthenticationSuccessEventHandler;
 import com.alone.coder.module.auth.support.handler.SsoLogoutSuccessHandler;
 import com.alone.coder.module.auth.support.password.OAuth2ResourceOwnerPasswordAuthenticationConverter;
 import com.alone.coder.module.auth.support.password.OAuth2ResourceOwnerPasswordAuthenticationProvider;
@@ -68,8 +68,8 @@ public class AuthorizationServerConfiguration {
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http,
-                                                                      PigxAuthenticationSuccessEventHandler successEventHandler,
-                                                                      PigxAuthenticationFailureEventHandler failureEventHandler) throws Exception {
+                                                                      AloneAuthenticationSuccessEventHandler successEventHandler,
+                                                                      AloneAuthenticationFailureEventHandler failureEventHandler) throws Exception {
         // 配置授权服务器的安全策略，只有/oauth2/**的请求才会走如下的配置
         http.securityMatcher("/oauth2/**");
         OAuth2AuthorizationServerConfigurer authorizationServerConfigurer = new OAuth2AuthorizationServerConfigurer();
@@ -137,7 +137,7 @@ public class AuthorizationServerConfiguration {
     public AuthenticationConverter accessTokenRequestConverter() {
         return new DelegatingAuthenticationConverter(Arrays.asList(
                 new OAuth2ResourceOwnerPasswordAuthenticationConverter(),
-                new OAuth2ResourceOwnerSmsAuthenticationConverter(), new PigxOAuth2RefreshTokenAuthenticationConverter(),
+                new OAuth2ResourceOwnerSmsAuthenticationConverter(), new AloneOAuth2RefreshTokenAuthenticationConverter(),
                 new OAuth2ClientCredentialsAuthenticationConverter(),
                 new OAuth2AuthorizationCodeAuthenticationConverter(),
                 new OAuth2AuthorizationCodeRequestAuthenticationConverter()));
@@ -161,7 +161,7 @@ public class AuthorizationServerConfiguration {
                 authenticationManager, authorizationService, oAuth2TokenGenerator());
 
         // 处理 UsernamePasswordAuthenticationToken
-        http.authenticationProvider(new PigxDaoAuthenticationProvider());
+        http.authenticationProvider(new AloneDaoAuthenticationProvider());
         // 处理 OAuth2ResourceOwnerPasswordAuthenticationToken
         http.authenticationProvider(resourceOwnerPasswordAuthenticationProvider);
         // 处理 OAuth2ResourceOwnerSmsAuthenticationToken

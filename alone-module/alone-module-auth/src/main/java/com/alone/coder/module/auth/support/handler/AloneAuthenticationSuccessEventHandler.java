@@ -34,7 +34,7 @@ import java.util.Map;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PigxAuthenticationSuccessEventHandler implements AuthenticationSuccessHandler {
+public class AloneAuthenticationSuccessEventHandler implements AuthenticationSuccessHandler {
 
     private static final HttpMessageConverter<OAuth2AccessTokenResponse> accessTokenHttpResponseConverter = new OAuth2AccessTokenResponseHttpMessageConverter();
 

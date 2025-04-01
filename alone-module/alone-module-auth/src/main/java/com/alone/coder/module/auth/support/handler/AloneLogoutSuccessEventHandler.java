@@ -3,7 +3,6 @@ package com.alone.coder.module.auth.support.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.event.LogoutSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class PigxLogoutSuccessEventHandler implements ApplicationListener<LogoutSuccessEvent> {
+public class AloneLogoutSuccessEventHandler implements ApplicationListener<LogoutSuccessEvent> {
 
 	@Override
 	public void onApplicationEvent(LogoutSuccessEvent event) {

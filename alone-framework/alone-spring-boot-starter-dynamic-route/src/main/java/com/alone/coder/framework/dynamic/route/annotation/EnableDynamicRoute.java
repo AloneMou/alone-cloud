@@ -26,13 +26,13 @@ import java.lang.annotation.*;
  * @author lengleng
  * @date 2018/11/5
  * <p>
- * 开启pigx 动态路由
+ * 开启动态路由
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 @Import(DynamicRouteAutoConfiguration.class)
-public @interface EnablePigxDynamicRoute {
+public @interface EnableDynamicRoute {
 
 }

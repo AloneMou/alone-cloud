@@ -54,7 +54,7 @@ public class BearerTokenExtractor implements BearerTokenResolver {
 	public String resolve(HttpServletRequest request) {
 		String requestUri = request.getRequestURI();
 		String relativePath = requestUri.substring(request.getContextPath().length());
-		RequestMappingHandlerMapping mapping = SpringUtils.getBean(RequestMappingHandlerMapping.class);
+		RequestMappingHandlerMapping mapping = SpringUtils.getBean("requestMappingHandlerMapping");
 		Map<RequestMappingInfo, HandlerMethod> map = mapping.getHandlerMethods();
 
 		List<String> ignoreUrls = urlProperties.getIgnoreUrls();

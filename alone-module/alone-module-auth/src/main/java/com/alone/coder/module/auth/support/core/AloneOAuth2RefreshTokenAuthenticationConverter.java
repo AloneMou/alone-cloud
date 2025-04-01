@@ -21,7 +21,7 @@ import java.util.*;
  *
  * 覆盖原生的 OAuth2RefreshTokenAuthenticationConverter ，避免无法获取 query params
  */
-public class PigxOAuth2RefreshTokenAuthenticationConverter implements AuthenticationConverter {
+public class AloneOAuth2RefreshTokenAuthenticationConverter implements AuthenticationConverter {
 
     @Nullable
     @Override

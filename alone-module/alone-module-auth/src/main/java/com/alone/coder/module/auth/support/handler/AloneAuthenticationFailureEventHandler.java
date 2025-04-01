@@ -2,13 +2,11 @@ package com.alone.coder.module.auth.support.handler;
 
 import cn.hutool.core.util.StrUtil;
 import com.alone.coder.framework.common.pojo.CommonResult;
-import com.alone.coder.module.system.api.user.AdminUserApi;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,7 +27,7 @@ import java.io.IOException;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class PigxAuthenticationFailureEventHandler implements AuthenticationFailureHandler {
+public class AloneAuthenticationFailureEventHandler implements AuthenticationFailureHandler {
 
     private static final MappingJackson2HttpMessageConverter errorHttpResponseConverter = new MappingJackson2HttpMessageConverter();
 

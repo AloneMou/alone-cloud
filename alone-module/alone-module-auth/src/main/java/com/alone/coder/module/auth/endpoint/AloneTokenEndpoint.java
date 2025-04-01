@@ -1,12 +1,7 @@
 package com.alone.coder.module.auth.endpoint;
 
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.TemporalAccessorUtil;
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
-import com.alone.coder.framework.common.constant.SecurityConstants;
 import com.alone.coder.framework.common.pojo.CommonResult;
-import com.alone.coder.framework.common.util.res.RetOps;
 import com.alone.coder.framework.common.util.spring.SpringUtils;
 import com.alone.coder.framework.security.core.annotation.Inner;
 import com.alone.coder.framework.security.core.util.OAuth2ErrorCodesExpand;
@@ -16,29 +11,22 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
-import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.authentication.event.LogoutSuccessEvent;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.alone.coder.module.system.enums.ApiConstants.USER_DETAILS;
 
@@ -50,7 +38,7 @@ import static com.alone.coder.module.system.enums.ApiConstants.USER_DETAILS;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-public class PigxTokenEndpoint {
+public class AloneTokenEndpoint {
 
     private final OAuth2AuthorizationService authorizationService;
 

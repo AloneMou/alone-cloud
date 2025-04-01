@@ -13,7 +13,7 @@ public class AloneFeignClientConfiguration {
 	 */
 	@Bean
 	public RequestInterceptor oauthRequestInterceptor(BearerTokenResolver tokenResolver) {
-		return new PigxOAuthRequestInterceptor(tokenResolver);
+		return new AloneOAuthRequestInterceptor(tokenResolver);
 	}
 
 }

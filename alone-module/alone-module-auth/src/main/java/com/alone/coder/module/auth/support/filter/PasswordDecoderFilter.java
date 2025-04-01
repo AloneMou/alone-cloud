@@ -87,7 +87,6 @@ public class PasswordDecoderFilter extends OncePerRequestFilter {
             if (!PASSWORD.equals(k) || ArrayUtil.isEmpty(values)) {
                 return;
             }
-
             // 解密密码
             String decryptPassword = aes.decryptStr(values[0]);
             parameterMap.put(k, new String[]{decryptPassword});
