@@ -49,6 +49,10 @@
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-monitor</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

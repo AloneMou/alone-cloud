@@ -7,10 +7,10 @@ spring:
       username: nacos
       password: Mvdd8sR7epABDfHC
       discovery: # 【配置中心】配置项
-        namespace: local # 命名空间。这里使用 dev 开发环境
+        namespace: public # 命名空间。这里使用 dev 开发环境
         group: DEFAULT_GROUP # 使用的 Nacos 配置分组，默认为 DEFAULT_GROUP
       config: # 【注册中心】配置项
-        namespace: local # 命名空间。这里使用 dev 开发环境
+        namespace: public # 命名空间。这里使用 dev 开发环境
         group: DEFAULT_GROUP # 使用的 Nacos 配置分组，默认为 DEFAULT_GROUP
   # 数据源配置项
   autoconfigure:
@@ -54,13 +54,33 @@ spring:
           url: jdbc:mysql://47.83.228.215:8306/alone_cloud?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true # MySQL Connector/J 8.X 连接的示例
           username: root
           password: lh20011210
-        slave: # 模拟从库，可根据自己需要修改 # 模拟从库，可根据自己需要修改
-          lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://192.168.110.59:8306/alone_cloud?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true # MySQL Connector/J 8.X 连接的示例
-          username: root
-          password: lh20011210
+#        slave: # 模拟从库，可根据自己需要修改 # 模拟从库，可根据自己需要修改
+#          lazy: true # 开启懒加载，保证启动速度
+#          url: jdbc:mysql://192.168.110.59:8306/alone_cloud?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true # MySQL Connector/J 8.X 连接的示例
+#          username: root
+#          password: lh20011210
+  data:
+    redis:
+      host: 192.168.110.59
+      port: 16379
+      password: VmbgmB4ZWeJeTNd3
+      database: 0
+      timeout: 5000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: -1ms
+
 # 日志文件配置
 logging:
   level:
     org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO 芋艿：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 
+
+security:
+  oauth2:
+    client:
+      ignore-urls:
+        - /test
