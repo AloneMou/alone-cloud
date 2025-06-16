@@ -58,6 +58,7 @@
         <fast.excel.version>1.1.0</fast.excel.version>
         <captcha.version>1.3.0</captcha.version>
         <captcha.image.version>2.2.3</captcha.image.version>
+        <xxl-job.version>3.1.0</xxl-job.version>
     </properties>
 
     <dependencyManagement>
@@ -220,7 +221,8 @@
                 <version>${springdoc.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.xingfudeshi</groupId> <!-- TODO 芋艿：https://github.com/xiaoymin/knife4j/issues/874 -->
+                <groupId>com.github.xingfudeshi
+                </groupId> <!-- TODO 芋艿：https://github.com/xiaoymin/knife4j/issues/874 -->
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>${knife4j.version}</version>
             </dependency>
@@ -334,7 +336,12 @@
                 <artifactId>fastexcel</artifactId>
                 <version>${fast.excel.version}</version>
             </dependency>
-
+            <!-- Xxl-Job-Admin -->
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

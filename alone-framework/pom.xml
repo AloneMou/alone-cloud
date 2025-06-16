@@ -28,6 +28,7 @@
         <module>alone-spring-boot-starter-payment</module>
         <module>alone-spring-boot-starter-security</module>
         <module>alone-spring-boot-starter-web</module>
+        <module>alone-spring-boot-starter-xxl-job</module>
     </modules>
 
 </project>
