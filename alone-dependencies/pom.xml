@@ -64,7 +64,6 @@
         <captcha.image.version>2.2.3</captcha.image.version>
         <!-- xxl-job -->
         <xxl-job.version>3.1.0</xxl-job.version>
-
     </properties>
 
     <dependencyManagement>

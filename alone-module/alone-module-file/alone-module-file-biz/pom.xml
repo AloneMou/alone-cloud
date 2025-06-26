@@ -11,10 +11,49 @@
 
     <artifactId>alone-module-file-biz</artifactId>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-module-file-api</artifactId>
+        </dependency>
+        <!--注册中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--配置中心客户端-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-encrypt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-monitor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alone.coder</groupId>
+            <artifactId>alone-spring-boot-starter-file</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

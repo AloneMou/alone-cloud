@@ -20,5 +20,11 @@
             <groupId>com.alone.coder</groupId>
             <artifactId>alone-spring-boot-starter-feign</artifactId>
         </dependency>
+        <!-- SSH -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
+        </dependency>
     </dependencies>
 </project>

@@ -1,8 +1,10 @@
 package com.alone.coder.framework.common.util.servlet;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.JakartaServletUtil;
+import cn.hutool.http.Header;
 import com.alone.coder.framework.common.util.json.JsonUtils;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +16,8 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Optional;
@@ -148,5 +152,20 @@ public class ServletUtils {
      */
     public Optional<String> extractClientId(String header) {
         return Optional.ofNullable(extractClientId(header, null));
+    }
+
+    /**
+     * 返回附件
+     *
+     * @param response 响应
+     * @param filename 文件名
+     * @param content  附件内容
+     */
+    public static void writeAttachment(HttpServletResponse response, String filename, byte[] content) throws IOException {
+        // 设置 header 和 contentType
+        response.addHeader(Header.CONTENT_DISPOSITION.getValue(), "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
+        response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
+        // 输出附件
+        IoUtil.write(response.getOutputStream(), false, content);
     }
 }
