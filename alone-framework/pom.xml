@@ -29,6 +29,8 @@
         <module>alone-spring-boot-starter-security</module>
         <module>alone-spring-boot-starter-web</module>
         <module>alone-spring-boot-starter-xxl-job</module>
+        <module>alone-spring-boot-starter-webhook</module>
+        <module>alone-spring-boot-starter-elasticsearch</module>
     </modules>
 
 </project>

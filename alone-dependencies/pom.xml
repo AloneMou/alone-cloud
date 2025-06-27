@@ -64,6 +64,12 @@
         <captcha.image.version>2.2.3</captcha.image.version>
         <!-- xxl-job -->
         <xxl-job.version>3.1.0</xxl-job.version>
+        <!--SNMP协议框架-->
+        <snmp4j.version>3.8.2</snmp4j.version>
+        <!-- vertx  -->
+        <vertx.version>4.5.10</vertx.version>
+        <!-- elasticsearch-->
+        <elasticsearch-client.version>8.10.0</elasticsearch-client.version>
     </properties>
 
     <dependencyManagement>
@@ -346,6 +352,26 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+            <!-- snmp4j 控制器 -->
+            <dependency>
+                <groupId>org.snmp4j</groupId>
+                <artifactId>snmp4j</artifactId>
+                <version>${snmp4j.version}</version>
+            </dependency>
+            <!-- vertx轻量级、高性能、响应式的异步应用框架 -->
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-dependencies</artifactId>
+                <version>${vertx.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>co.elastic.clients</groupId>
+                <artifactId>elasticsearch-java</artifactId>
+                <version>${elasticsearch-client.version}</version> <!-- 最新8.x版本 -->
             </dependency>
         </dependencies>
     </dependencyManagement>
