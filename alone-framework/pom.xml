@@ -31,6 +31,8 @@
         <module>alone-spring-boot-starter-xxl-job</module>
         <module>alone-spring-boot-starter-webhook</module>
         <module>alone-spring-boot-starter-elasticsearch</module>
+        <module>alone-common-radius</module>
+        <module>alone-spring-boot-starter-portal-server</module>
     </modules>
 
 </project>

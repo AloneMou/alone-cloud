@@ -18,7 +18,7 @@
         <spring.cloud.alibaba.version>2023.0.3.3</spring.cloud.alibaba.version>
         <hutool.version>5.8.41</hutool.version>
         <!-- gRPC -->
-
+        <grpc.version>3.1.0.RELEASE</grpc.version>
         <!-- 监控相关 -->
         <skywalking.version>9.5.0</skywalking.version>
         <spring-boot-admin.version>3.5.6</spring-boot-admin.version>
@@ -72,6 +72,8 @@
         <vertx.version>4.5.10</vertx.version>
         <!-- elasticsearch-->
         <elasticsearch-client.version>8.10.0</elasticsearch-client.version>
+        <!-- 用于处理 IP 地址和子网的 Java 库，支持 IPv4 和 IPv6 -->
+        <seancfoley.ipaddress.version>5.5.1</seancfoley.ipaddress.version>
     </properties>
 
     <dependencyManagement>
@@ -374,6 +376,31 @@
                 <groupId>co.elastic.clients</groupId>
                 <artifactId>elasticsearch-java</artifactId>
                 <version>${elasticsearch-client.version}</version> <!-- 最新8.x版本 -->
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.seancfoley</groupId>
+                <artifactId>ipaddress</artifactId>
+                <version>${seancfoley.ipaddress.version}</version>
+            </dependency>
+
+            <!-- gRPC 服务端 + 客户端 -->
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-spring-boot-starter</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+            <!--  gRPC 服务端 -->
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-server-spring-boot-starter</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+            <!--  gRPC 客户端 -->
+            <dependency>
+                <groupId>net.devh</groupId>
+                <artifactId>grpc-client-spring-boot-starter</artifactId>
+                <version>${grpc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
