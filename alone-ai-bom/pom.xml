@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.alone.coder</groupId>
+    <artifactId>alone-ai-bom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--   Alibaba AI  -->
+        <alibaba-ai.version>1.1.0.0-M5</alibaba-ai.version>
+        <!--   TinyFlow  -->
+        <tinyflow.version>1.2.6</tinyflow.version>
+        <!--   QianFan AI  -->
+        <qianfan-ai.version>1.0.0</qianfan-ai.version>
+        <!--   月之暗面  -->
+        <moonshot-ai.version>1.0.0</moonshot-ai.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- 通义千问 -->
+                <groupId>com.alibaba.cloud.ai</groupId>
+                <artifactId>spring-ai-alibaba-starter-dashscope</artifactId>
+                <version>${alibaba-ai.version}</version>
+            </dependency>
+            <dependency>
+                <!-- 文心一言 -->
+                <groupId>org.springaicommunity</groupId>
+                <artifactId>qianfan-spring-boot-starter</artifactId>
+                <version>${qianfan-ai.version}</version>
+            </dependency>
+            <dependency>
+                <!-- 月之暗面 -->
+                <groupId>org.springaicommunity</groupId>
+                <artifactId>moonshot-spring-boot-starter</artifactId>
+                <version>${moonshot-ai.version}</version>
+            </dependency>
+            <!-- TinyFlow：AI 工作流 -->
+            <dependency>
+                <groupId>dev.tinyflow</groupId>
+                <artifactId>tinyflow-java-core</artifactId>
+                <version>${tinyflow.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.jfinal</groupId>
+                        <artifactId>enjoy</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <!-- 解决 https://gitee.com/zhijiantianya/ruoyi-vue-pro/pulls/1318/ 问题 -->
+                        <groupId>com.agentsflex</groupId>
+                        <artifactId>agents-flex-store-elasticsearch</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <!-- TODO @芋艿：暂时移除 groovy，和 iot 冲突 -->
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-all</artifactId>
+                    </exclusion>
+                    <!-- 解决和 logback 的日志冲突 -->
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-slf4j-impl</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-reload4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
