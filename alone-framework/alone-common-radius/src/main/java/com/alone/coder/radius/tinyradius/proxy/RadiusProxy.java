@@ -56,7 +56,7 @@ public abstract class RadiusProxy extends RadiusServer {
 	 * Stops the proxy and closes the socket.
 	 */
 	public void stop() {
-		logger.info("stopping Radius proxy");
+		log.info("stopping Radius proxy");
 		if (proxySocket != null)
 			proxySocket.close();
 		super.stop();
@@ -146,7 +146,7 @@ public abstract class RadiusProxy extends RadiusServer {
 		if (radiusServer != null) {
 			// proxy incoming packet to other radius server
 			RadiusProxyConnection proxyConnection = new RadiusProxyConnection(radiusServer, radiusClient, request, localAddress.getPort());
-			logger.info("proxy packet to " + proxyConnection);
+			log.info("proxy packet to " + proxyConnection);
 			proxyPacket(request, proxyConnection);
 			return null;
 		}
@@ -176,15 +176,15 @@ public abstract class RadiusProxy extends RadiusServer {
 		String state = new String(proxyState.getAttributeData());
 		RadiusProxyConnection proxyConnection = (RadiusProxyConnection) proxyConnections.remove(state);
 		if (proxyConnection == null) {
-			logger.warn("received packet on proxy port without saved proxy connection - duplicate?");
+			log.warn("received packet on proxy port without saved proxy connection - duplicate?");
 			return;
 		}
 
 		// retrieve client
 		RadiusEndpoint client = proxyConnection.getRadiusClient();
-		if (logger.isInfoEnabled()) {
-			logger.info("received proxy packet: " + packet);
-			logger.info("forward packet to " + client.getEndpointAddress().toString() + " with secret " + client.getSharedSecret());
+		if (log.isInfoEnabled()) {
+			log.info("received proxy packet: " + packet);
+			log.info("forward packet to " + client.getEndpointAddress().toString() + " with secret " + client.getSharedSecret());
 		}
 
 		// remove only own Proxy-State (last attribute)
@@ -262,6 +262,5 @@ public abstract class RadiusProxy extends RadiusServer {
 
 	private int proxyPort = 1814;
 	private DatagramSocket proxySocket = null;
-	private static Log logger = LogFactory.getLog(RadiusProxy.class);
 
 }
