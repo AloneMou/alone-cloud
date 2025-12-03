@@ -1,1 +1,2 @@
 com.alone.coder.framework.xxl.job.config.XxlJobAutoConfiguration
+com.alone.coder.framework.xxl.job.config.AloneAsyncAutoConfiguration

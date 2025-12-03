@@ -58,7 +58,7 @@ public class XxlJobProperties {
          * 执行器名称
          */
         @NotBlank(message = "XxlJob 执行器名称不能为空")
-        private String appname;
+        private String appName;
 
         /**
          * 执行器地址
