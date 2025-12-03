@@ -7,11 +7,12 @@
  */
 package com.alone.coder.radius.tinyradius.packet;
 
-import org.tinyradius.attribute.IntegerAttribute;
-import org.tinyradius.attribute.RadiusAttribute;
-import org.tinyradius.attribute.StringAttribute;
-import org.tinyradius.util.RadiusException;
-import org.tinyradius.util.RadiusUtil;
+
+import com.alone.coder.radius.tinyradius.attribute.IntegerAttribute;
+import com.alone.coder.radius.tinyradius.attribute.RadiusAttribute;
+import com.alone.coder.radius.tinyradius.attribute.StringAttribute;
+import com.alone.coder.radius.tinyradius.util.RadiusException;
+import com.alone.coder.radius.tinyradius.util.RadiusUtil;
 
 import java.security.MessageDigest;
 import java.util.List;

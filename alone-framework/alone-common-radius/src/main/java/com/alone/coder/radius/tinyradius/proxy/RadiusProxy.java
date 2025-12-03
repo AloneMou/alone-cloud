@@ -7,13 +7,13 @@
  */
 package com.alone.coder.radius.tinyradius.proxy;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.tinyradius.attribute.RadiusAttribute;
-import org.tinyradius.packet.RadiusPacket;
-import org.tinyradius.util.RadiusEndpoint;
-import org.tinyradius.util.RadiusException;
-import org.tinyradius.util.RadiusServer;
+
+import com.alone.coder.radius.tinyradius.attribute.RadiusAttribute;
+import com.alone.coder.radius.tinyradius.packet.RadiusPacket;
+import com.alone.coder.radius.tinyradius.util.RadiusEndpoint;
+import com.alone.coder.radius.tinyradius.util.RadiusException;
+import com.alone.coder.radius.tinyradius.util.RadiusServer;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -28,6 +28,7 @@ import java.util.Map;
  * You have to override the method getRadiusProxyConnection() which
  * identifies the Radius proxy connection a Radius packet belongs to.
  */
+@Slf4j
 public abstract class RadiusProxy extends RadiusServer {
 
 	/**
@@ -40,7 +41,7 @@ public abstract class RadiusProxy extends RadiusServer {
 				public void run() {
 					setName("Radius Proxy Listener");
 					try {
-						logger.info("starting RadiusProxyListener on port " + getProxyPort());
+                        log.info("starting RadiusProxyListener on port {}", getProxyPort());
 						listen(getProxySocket());
 					}
 					catch (Exception e) {

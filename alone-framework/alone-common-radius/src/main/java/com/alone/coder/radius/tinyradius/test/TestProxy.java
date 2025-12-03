@@ -6,10 +6,11 @@
  */
 package com.alone.coder.radius.tinyradius.test;
 
-import org.tinyradius.packet.AccountingRequest;
-import org.tinyradius.packet.RadiusPacket;
-import org.tinyradius.proxy.RadiusProxy;
-import org.tinyradius.util.RadiusEndpoint;
+
+import com.alone.coder.radius.tinyradius.packet.AccountingRequest;
+import com.alone.coder.radius.tinyradius.packet.RadiusPacket;
+import com.alone.coder.radius.tinyradius.proxy.RadiusProxy;
+import com.alone.coder.radius.tinyradius.util.RadiusEndpoint;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -28,7 +29,7 @@ import java.net.UnknownHostException;
 public class TestProxy extends RadiusProxy {
 
 	public RadiusEndpoint getProxyServer(RadiusPacket packet,
-			RadiusEndpoint client) {
+										 RadiusEndpoint client) {
 		// always proxy
 		try {
 			InetAddress address = InetAddress.getByAddress(new byte[]{127,0,0,1});

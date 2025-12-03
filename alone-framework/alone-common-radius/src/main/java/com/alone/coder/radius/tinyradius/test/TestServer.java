@@ -7,10 +7,11 @@
  */
 package com.alone.coder.radius.tinyradius.test;
 
-import org.tinyradius.packet.AccessRequest;
-import org.tinyradius.packet.RadiusPacket;
-import org.tinyradius.util.RadiusException;
-import org.tinyradius.util.RadiusServer;
+
+import com.alone.coder.radius.tinyradius.packet.AccessRequest;
+import com.alone.coder.radius.tinyradius.packet.RadiusPacket;
+import com.alone.coder.radius.tinyradius.util.RadiusException;
+import com.alone.coder.radius.tinyradius.util.RadiusServer;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

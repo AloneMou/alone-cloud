@@ -1,6 +1,7 @@
 package com.alone.coder.radius.tinyradius.packet;
 
-import org.tinyradius.util.RadiusUtil;
+
+import com.alone.coder.radius.tinyradius.util.RadiusUtil;
 
 import java.security.MessageDigest;
 

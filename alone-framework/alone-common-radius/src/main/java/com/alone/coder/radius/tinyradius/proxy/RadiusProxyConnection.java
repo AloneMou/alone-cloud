@@ -6,8 +6,10 @@
  */
 package com.alone.coder.radius.tinyradius.proxy;
 
-import org.tinyradius.packet.RadiusPacket;
-import org.tinyradius.util.RadiusEndpoint;
+
+import com.alone.coder.radius.tinyradius.packet.RadiusPacket;
+import com.alone.coder.radius.tinyradius.util.RadiusEndpoint;
+import lombok.Getter;
 
 /**
  * This class stores information about a proxied packet.
@@ -15,6 +17,7 @@ import org.tinyradius.util.RadiusEndpoint;
  * and server, the port number the proxied packet arrived
  * at originally and the proxied packet itself.
  */
+@Getter
 public class RadiusProxyConnection {
 
 	/**
@@ -29,43 +32,35 @@ public class RadiusProxyConnection {
 		this.packet = packet;
 		this.port = port;
 	}
-	
-	/**
-	 * Returns the Radius endpoint of the client.
-	 * @return endpoint
-	 */
-	public RadiusEndpoint getRadiusClient() {
-		return radiusClient;
-	}
-	
-	/**
-	 * Returns the Radius endpoint of the server.
-	 * @return endpoint
-	 */
-	public RadiusEndpoint getRadiusServer() {
-		return radiusServer;
-	}
-	
-	/**
-	 * Returns the proxied packet.
-	 * @return packet 
-	 */
-	public RadiusPacket getPacket() {
-		return packet;
-	}
-	
-	/**
-	 * Returns the port number the proxied packet arrived at
-	 * originally. 
-	 * @return port number
-	 */
-	public int getPort() {
-		return port;
-	}
-	
-	private RadiusEndpoint radiusServer;
-	private RadiusEndpoint radiusClient;
-	private int port;
-	private RadiusPacket packet;
+
+    /**
+     * -- GETTER --
+     *  Returns the Radius endpoint of the server.
+     *
+     * @return endpoint
+     */
+    private RadiusEndpoint radiusServer;
+    /**
+     * -- GETTER --
+     *  Returns the Radius endpoint of the client.
+     *
+     * @return endpoint
+     */
+    private RadiusEndpoint radiusClient;
+    /**
+     * -- GETTER --
+     *  Returns the port number the proxied packet arrived at
+     *  originally.
+     *
+     * @return port number
+     */
+    private int port;
+    /**
+     * -- GETTER --
+     *  Returns the proxied packet.
+     *
+     * @return packet
+     */
+    private RadiusPacket packet;
 	
 }
