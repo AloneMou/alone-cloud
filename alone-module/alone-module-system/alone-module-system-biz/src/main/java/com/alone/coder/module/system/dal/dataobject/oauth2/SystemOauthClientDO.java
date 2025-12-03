@@ -4,6 +4,7 @@ import com.alone.coder.framework.common.enums.CommonStatusEnum;
 import com.alone.coder.framework.mybatis.core.dataobject.BaseDO;
 import com.alone.coder.module.system.enums.oauth2.OAuth2GrantTypeEnum;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,6 +21,7 @@ public class SystemOauthClientDO extends BaseDO {
     /**
      * 客户端ID
      */
+    @TableId
     private Long id;
 
     /**

@@ -14,22 +14,24 @@
         <maven.compiler.target>17</maven.compiler.target>
         <!--统一依赖管理-->
         <spring.boot.version>3.4.5</spring.boot.version>
-        <spring.cloud.version>2024.0.0</spring.cloud.version>
-        <spring.cloud.alibaba.version>2023.0.3.2</spring.cloud.alibaba.version>
-        <hutool.version>5.8.36</hutool.version>
+        <spring.cloud.version>2025.0.0</spring.cloud.version>
+        <spring.cloud.alibaba.version>2023.0.3.3</spring.cloud.alibaba.version>
+        <hutool.version>5.8.41</hutool.version>
+        <!-- gRPC -->
+
         <!-- 监控相关 -->
-        <skywalking.version>9.0.0</skywalking.version>
-        <spring-boot-admin.version>3.4.1</spring-boot-admin.version>
+        <skywalking.version>9.5.0</skywalking.version>
+        <spring-boot-admin.version>3.5.6</spring-boot-admin.version>
         <opentracing.version>0.33.0</opentracing.version>
         <!--MyBatis相关-->
         <mybatis.version>3.5.19</mybatis.version>
-        <mybatis-plus.version>3.5.10.1</mybatis-plus.version>
+        <mybatis-plus.version>3.5.14</mybatis-plus.version>
         <!-- mybatis-plus-join -->
-        <mybatis-plus-join.version>1.5.3</mybatis-plus-join.version>
+        <mybatis-plus-join.version>1.5.4</mybatis-plus-join.version>
         <!-- 动态数据源 -->
         <dynamic-ds.version>4.3.1</dynamic-ds.version>
         <!--数据库连接池-->
-        <druid.version>1.2.24</druid.version>
+        <druid.version>1.2.27</druid.version>
         <!-- 数据库驱动 -->
         <mysql.connector.version>8.3.0</mysql.connector.version>
         <!-- Swagger -->
@@ -58,7 +60,7 @@
         <!-- Mapstruct -->
         <mapstruct.version>1.6.3</mapstruct.version>
         <!-- FastExcel -->
-        <fast.excel.version>1.1.0</fast.excel.version>
+        <fast.excel.version>1.3.0</fast.excel.version>
         <!-- 验证码 -->
         <captcha.version>1.3.0</captcha.version>
         <captcha.image.version>2.2.3</captcha.image.version>

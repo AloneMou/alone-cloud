@@ -10,6 +10,5 @@ public interface SystemOauthClientConvert {
 
     SystemOauthClientConvert INSTANCE = Mappers.getMapper(SystemOauthClientConvert.class);
 
-
     SystemOauthClientRespDTO convert(SystemOauthClientDO bean);
 }
