@@ -1,8 +1,8 @@
 package com.alone.coder.radius.tinyradius.core.attribute.codec;
 
-import org.jspecify.annotations.NonNull;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.packet.RadiusPacket;
+import org.springframework.lang.NonNull;
 
 import java.security.MessageDigest;
 import java.util.Arrays;

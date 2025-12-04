@@ -3,7 +3,6 @@ package com.alone.coder.radius.tinyradius.core.attribute;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.jspecify.annotations.NonNull;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.codec.AttributeCodecType;
 import com.alone.coder.radius.tinyradius.core.attribute.type.EncodedAttribute;
@@ -11,6 +10,7 @@ import com.alone.coder.radius.tinyradius.core.attribute.type.OctetsAttribute;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttributeFactory;
 import com.alone.coder.radius.tinyradius.core.dictionary.Dictionary;
+import org.springframework.lang.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;

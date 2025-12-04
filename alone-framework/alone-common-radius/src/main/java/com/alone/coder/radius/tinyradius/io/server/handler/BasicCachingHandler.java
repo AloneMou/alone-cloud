@@ -5,9 +5,9 @@ import io.netty.handler.codec.MessageToMessageCodec;
 import io.netty.util.Timer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.jspecify.annotations.NonNull;
 import com.alone.coder.radius.tinyradius.io.server.RequestCtx;
 import com.alone.coder.radius.tinyradius.io.server.ResponseCtx;
+import org.springframework.lang.NonNull;
 
 import java.net.InetSocketAddress;
 import java.util.Arrays;

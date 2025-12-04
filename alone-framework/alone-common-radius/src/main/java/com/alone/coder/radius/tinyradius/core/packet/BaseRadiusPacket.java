@@ -5,11 +5,11 @@ import io.netty.buffer.Unpooled;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
 import com.alone.coder.radius.tinyradius.core.dictionary.Dictionary;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.util.Arrays;
 import java.util.List;

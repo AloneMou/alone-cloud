@@ -1,6 +1,9 @@
 package com.alone.coder.radius.tinyradius.core.dictionary;
 
-import org.jspecify.annotations.NonNull;
+
+
+
+import org.springframework.lang.NonNull;
 
 import java.nio.ByteBuffer;
 

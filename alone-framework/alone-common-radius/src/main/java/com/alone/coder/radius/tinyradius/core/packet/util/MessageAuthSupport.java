@@ -2,13 +2,13 @@ package com.alone.coder.radius.tinyradius.core.packet.util;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import org.springframework.lang.NonNull;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
 import com.alone.coder.radius.tinyradius.core.packet.RadiusPacket;
+import org.springframework.lang.Nullable;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;

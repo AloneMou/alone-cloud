@@ -1,7 +1,6 @@
 package com.alone.coder.radius.tinyradius.io;
 
-
-import org.jspecify.annotations.NonNull;
+import org.springframework.lang.NonNull;
 
 import java.net.InetSocketAddress;
 

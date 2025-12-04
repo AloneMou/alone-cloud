@@ -3,11 +3,11 @@ package com.alone.coder.radius.tinyradius.core.attribute.type;
 import io.netty.buffer.ByteBuf;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import org.jspecify.annotations.NonNull;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.AttributeTemplate;
 import com.alone.coder.radius.tinyradius.core.dictionary.Dictionary;
 import com.alone.coder.radius.tinyradius.core.dictionary.Vendor;
+import org.springframework.lang.NonNull;
 
 import java.util.Optional;
 

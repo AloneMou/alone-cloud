@@ -2,11 +2,11 @@ package com.alone.coder.radius.tinyradius.core.packet;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import org.jspecify.annotations.NonNull;
-import org.jspecify.annotations.Nullable;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.NestedAttributeHolder;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
