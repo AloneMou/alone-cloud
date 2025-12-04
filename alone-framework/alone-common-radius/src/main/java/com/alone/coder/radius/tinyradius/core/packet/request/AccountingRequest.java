@@ -1,0 +1,23 @@
+package com.alone.coder.radius.tinyradius.core.packet.request;
+
+import io.netty.buffer.ByteBuf;
+import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
+import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
+import com.alone.coder.radius.tinyradius.core.dictionary.Dictionary;
+
+import java.util.List;
+
+import static com.alone.coder.radius.tinyradius.core.packet.PacketType.ACCOUNTING_REQUEST;
+
+/**
+ * This class represents a Radius packet of the type Accounting-Request.
+ */
+public class AccountingRequest extends GenericRequest {
+
+    public AccountingRequest(Dictionary dictionary, ByteBuf header, List<RadiusAttribute> attributes) throws RadiusPacketException {
+        super(dictionary, header, attributes);
+        final byte type = header.getByte(0);
+        if (type != ACCOUNTING_REQUEST)
+            throw new IllegalArgumentException("First octet must be " + ACCOUNTING_REQUEST + ", actual: " + type);
+    }
+}

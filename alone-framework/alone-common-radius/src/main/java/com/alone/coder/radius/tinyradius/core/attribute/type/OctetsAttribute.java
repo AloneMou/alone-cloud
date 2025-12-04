@@ -1,0 +1,111 @@
+package com.alone.coder.radius.tinyradius.core.attribute.type;
+
+import io.netty.buffer.ByteBuf;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import org.jspecify.annotations.NonNull;
+import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
+import com.alone.coder.radius.tinyradius.core.attribute.AttributeTemplate;
+import com.alone.coder.radius.tinyradius.core.dictionary.Dictionary;
+import com.alone.coder.radius.tinyradius.core.dictionary.Vendor;
+
+import java.util.Optional;
+
+/**
+ * The basic generic Radius attribute. All type-specific implementations extend this class
+ * by adding additional type conversion methods and validations.
+ */
+@Getter
+@EqualsAndHashCode
+public class OctetsAttribute implements RadiusAttribute {
+
+    public static final RadiusAttributeFactory<OctetsAttribute> FACTORY = new Factory();
+
+    @EqualsAndHashCode.Exclude
+    private final Dictionary dictionary;
+
+    private final ByteBuf data;
+    private final int vendorId; // for Vendor-Specific sub-attributes, otherwise -1
+
+    public OctetsAttribute(@NonNull Dictionary dictionary, int vendorId, @NonNull ByteBuf data) {
+        this.dictionary = dictionary;
+        this.vendorId = vendorId;
+        this.data = data;
+
+        final int actualLength = data.readableBytes();
+        if (actualLength > 255)
+            throw new IllegalArgumentException("Attribute too long, max 255 octets, actual: " + actualLength);
+
+        final Optional<Vendor> vendor = dictionary.getVendor(vendorId);
+        final int typeSize = vendor.map(Vendor::typeSize).orElse(1);
+        final int lengthSize = vendor.map(Vendor::lengthSize).orElse(1);
+
+        final int length = extractLength(typeSize, lengthSize);
+        if (length != actualLength)
+            throw new IllegalArgumentException("Attribute declared length is " + length + ", actual length: " + actualLength);
+    }
+
+    private int extractLength(int typeSize, int lengthSize) {
+        return switch (lengthSize) {
+            case 0 -> data.readableBytes();
+            case 2 -> data.getShort(typeSize);
+            default -> Byte.toUnsignedInt(data.getByte(typeSize)); // max 255
+        };
+    }
+
+    /**
+     * @return RFC2868 Tag
+     */
+    @Override
+    public Optional<Byte> getTag() {
+        return isTagged() ?
+                Optional.of(data.getByte(getHeaderSize())) :
+                Optional.empty();
+    }
+
+    @Override
+    public byte[] getValue() {
+        final int offset = getHeaderSize() + getTagSize();
+        return data.slice(offset, data.readableBytes() - offset)
+                .copy().array();
+    }
+
+    @Override
+    public String getValueString() {
+        return "0x" + HEX_FORMAT.formatHex(getValue());
+    }
+
+    @Override
+    public String toString() {
+        final String tag = getTag()
+                .map(t -> ":" + t)
+                .orElse("");
+        return getAttributeName() + tag + "=" + getValueString();
+    }
+
+    @Override
+    public RadiusAttribute encode(byte[] requestAuth, String secret) throws RadiusPacketException {
+        final Optional<AttributeTemplate> template = getAttributeTemplate();
+        return template.isPresent() ?
+                template.get().encode(this, requestAuth, secret) :
+                this;
+    }
+
+    public static byte[] stringHexParser(String value) {
+        return HEX_FORMAT.parseHex(value);
+    }
+
+    private static class Factory implements RadiusAttributeFactory<OctetsAttribute> {
+
+        @Override
+        public OctetsAttribute newInstance(Dictionary dictionary, int vendorId, ByteBuf value) {
+            return new OctetsAttribute(dictionary, vendorId, value);
+        }
+
+        @Override
+        public byte[] parse(Dictionary dictionary, int vendorId, int type, String value) {
+            return stringHexParser(value);
+        }
+    }
+
+}
