@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 
-@ConfigurationProperties(prefix = "yudao.web")
+@ConfigurationProperties(prefix = "alone.web")
 @Validated
 @Data
 public class WebProperties {

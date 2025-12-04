@@ -74,6 +74,8 @@
         <elasticsearch-client.version>8.10.0</elasticsearch-client.version>
         <!-- 用于处理 IP 地址和子网的 Java 库，支持 IPv4 和 IPv6 -->
         <seancfoley.ipaddress.version>5.5.1</seancfoley.ipaddress.version>
+        <!-- jsoup HTML解析器 -->
+        <jsoup.version>1.21.2</jsoup.version>
     </properties>
 
     <dependencyManagement>
@@ -407,6 +409,12 @@
                 <artifactId>grpc-client-spring-boot-starter</artifactId>
                 <version>${grpc.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 </project>

@@ -1,1 +1,3 @@
+com.alone.coder.framework.jackson.config.AloneJacksonAutoConfiguration
 com.alone.coder.framework.web.config.YudaoWebAutoConfiguration
+com.alone.coder.framework.xss.config.AloneXssAutoConfiguration
