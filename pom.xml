@@ -14,6 +14,7 @@
         <module>alone-framework</module>
         <module>alone-module</module>
         <module>alone-middleware</module>
+        <module>alone-ai-bom</module>
     </modules>
 
     <properties>
