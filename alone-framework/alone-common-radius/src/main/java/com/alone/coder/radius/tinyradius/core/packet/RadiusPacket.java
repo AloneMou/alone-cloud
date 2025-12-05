@@ -5,7 +5,7 @@ import io.netty.buffer.Unpooled;
 import com.alone.coder.radius.tinyradius.core.RadiusPacketException;
 import com.alone.coder.radius.tinyradius.core.attribute.NestedAttributeHolder;
 import com.alone.coder.radius.tinyradius.core.attribute.type.RadiusAttribute;
-import org.springframework.lang.NonNull;
+import lombok.NonNull;
 import org.springframework.lang.Nullable;
 
 import java.nio.ByteBuffer;

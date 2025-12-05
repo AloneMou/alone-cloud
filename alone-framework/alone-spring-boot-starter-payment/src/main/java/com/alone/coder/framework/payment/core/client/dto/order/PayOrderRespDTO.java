@@ -4,6 +4,7 @@ import com.alone.coder.framework.payment.core.client.exception.PayClientExceptio
 import com.alone.coder.framework.payment.core.enums.PayOrderDisplayModeEnum;
 import com.alone.coder.framework.payment.core.enums.order.PayOrderStatusEnum;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
  * @author 芋道源码
  */
 @Data
+@Accessors(chain = true)
 public class PayOrderRespDTO {
 
     /**

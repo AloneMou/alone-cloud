@@ -3,11 +3,11 @@ package com.alone.coder.framework.payment.core.client.impl.weixin;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.iocoder.yudao.framework.common.util.date.LocalDateTimeUtils;
-import cn.iocoder.yudao.module.pay.enums.PayChannelEnum;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderRespDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderUnifiedReqDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.enums.PayOrderDisplayModeEnum;
+import com.alone.coder.framework.common.util.date.LocalDateTimeUtils;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderRespDTO;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderUnifiedReqDTO;
+import com.alone.coder.framework.payment.core.enums.PayChannelEnum;
+import com.alone.coder.framework.payment.core.enums.PayOrderDisplayModeEnum;
 import com.github.binarywang.wxpay.bean.request.WxPayMicropayRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayMicropayResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -18,8 +18,9 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
-import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.invalidParamException;
-import static cn.iocoder.yudao.framework.common.util.json.JsonUtils.toJsonString;
+import static com.alone.coder.framework.common.exception.util.ServiceExceptionUtil.invalidParamException;
+import static com.alone.coder.framework.common.util.json.JsonUtils.toJsonString;
+
 
 /**
  * 微信支付【付款码支付】的 PayClient 实现类

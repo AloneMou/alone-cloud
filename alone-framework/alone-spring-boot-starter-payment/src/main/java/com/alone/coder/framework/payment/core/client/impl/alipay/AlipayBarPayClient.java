@@ -3,22 +3,23 @@ package com.alone.coder.framework.payment.core.client.impl.alipay;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.iocoder.yudao.module.pay.enums.PayChannelEnum;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderRespDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderUnifiedReqDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.enums.PayOrderDisplayModeEnum;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderRespDTO;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderUnifiedReqDTO;
+import com.alone.coder.framework.payment.core.enums.PayChannelEnum;
+import com.alone.coder.framework.payment.core.enums.PayOrderDisplayModeEnum;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import static cn.iocoder.yudao.framework.common.exception.enums.GlobalErrorCodeConstants.BAD_REQUEST;
-import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception0;
-import static cn.iocoder.yudao.module.pay.framework.pay.core.client.impl.alipay.AlipayPayClientConfig.MODE_CERTIFICATE;
+import static com.alone.coder.framework.common.exception.enums.GlobalErrorCodeConstants.BAD_REQUEST;
+import static com.alone.coder.framework.common.exception.util.ServiceExceptionUtil.exception0;
+import static com.alone.coder.framework.payment.core.client.impl.alipay.AlipayPayClientConfig.MODE_CERTIFICATE;
+
 
 /**
  * 支付宝【条码支付】的 PayClient 实现类

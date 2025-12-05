@@ -1,9 +1,9 @@
 package com.alone.coder.framework.payment.core.client.impl.weixin;
 
-import cn.iocoder.yudao.module.pay.enums.PayChannelEnum;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderRespDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderUnifiedReqDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.enums.PayOrderDisplayModeEnum;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderRespDTO;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderUnifiedReqDTO;
+import com.alone.coder.framework.payment.core.enums.PayChannelEnum;
+import com.alone.coder.framework.payment.core.enums.PayOrderDisplayModeEnum;
 import com.github.binarywang.wxpay.bean.order.WxPayMwebOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderV3Request;

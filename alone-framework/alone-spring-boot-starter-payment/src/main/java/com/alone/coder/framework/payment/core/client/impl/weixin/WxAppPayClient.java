@@ -1,9 +1,9 @@
 package com.alone.coder.framework.payment.core.client.impl.weixin;
 
-import cn.iocoder.yudao.module.pay.enums.PayChannelEnum;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderRespDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.client.dto.order.PayOrderUnifiedReqDTO;
-import cn.iocoder.yudao.module.pay.framework.pay.core.enums.PayOrderDisplayModeEnum;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderRespDTO;
+import com.alone.coder.framework.payment.core.client.dto.order.PayOrderUnifiedReqDTO;
+import com.alone.coder.framework.payment.core.enums.PayChannelEnum;
+import com.alone.coder.framework.payment.core.enums.PayOrderDisplayModeEnum;
 import com.github.binarywang.wxpay.bean.order.WxPayAppOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderV3Request;
@@ -13,7 +13,8 @@ import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import lombok.extern.slf4j.Slf4j;
 
-import static cn.iocoder.yudao.framework.common.util.json.JsonUtils.toJsonString;
+import static com.alone.coder.framework.common.util.json.JsonUtils.toJsonString;
+
 
 /**
  * 微信支付【App 支付】的 PayClient 实现类
