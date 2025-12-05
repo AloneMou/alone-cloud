@@ -76,6 +76,10 @@
         <seancfoley.ipaddress.version>5.5.1</seancfoley.ipaddress.version>
         <!-- jsoup HTML解析器 -->
         <jsoup.version>1.21.2</jsoup.version>
+        <!-- 微信支付 -->
+        <weixin-java.version>4.7.8-20251117.120146</weixin-java.version>
+        <!-- 支付宝支付 -->
+        <alipay-sdk.version>4.35.79.ALL</alipay-sdk.version>
     </properties>
 
     <dependencyManagement>
@@ -413,6 +417,27 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>${jsoup.version}</version>
+            </dependency>
+            <!-- 三方云服务相关 -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${alipay-sdk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-pay</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>wx-java-mp-spring-boot-starter</artifactId>
+                <version>${weixin-java.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
+                <version>${weixin-java.version}</version>
             </dependency>
 
         </dependencies>
