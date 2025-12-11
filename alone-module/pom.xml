@@ -19,7 +19,6 @@
         <module>alone-module-mall</module>
         <module>alone-module-pay</module>
         <module>alone-module-system</module>
-        <module>alone-module-radius</module>
     </modules>
 
     <properties>

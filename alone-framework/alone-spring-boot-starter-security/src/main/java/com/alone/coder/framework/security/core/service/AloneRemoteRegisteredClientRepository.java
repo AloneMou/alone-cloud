@@ -1,8 +1,6 @@
 package com.alone.coder.framework.security.core.service;
 
-import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import com.alone.coder.framework.common.constant.SecurityConstants;
 import com.alone.coder.framework.common.util.json.JsonUtils;
 import com.alone.coder.framework.common.util.res.RetOps;
@@ -24,16 +22,12 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 /**
  * 查询客户端相关信息实现
- *
- * @author lengleng
- * @date 2022/5/29
  */
 @RequiredArgsConstructor
 public class AloneRemoteRegisteredClientRepository implements RegisteredClientRepository {
@@ -155,8 +149,7 @@ public class AloneRemoteRegisteredClientRepository implements RegisteredClientRe
                     .build());
         });
 
-        return builder
-                .tokenSettings(TokenSettings.builder()
+        return builder.tokenSettings(TokenSettings.builder()
                         .accessTokenFormat(OAuth2TokenFormat.REFERENCE)
                         .accessTokenTimeToLive(Duration.ofSeconds(
                                 Optional.ofNullable(finalClientDetails.getAccessTokenValiditySeconds()).orElse(accessTokenValiditySeconds)))

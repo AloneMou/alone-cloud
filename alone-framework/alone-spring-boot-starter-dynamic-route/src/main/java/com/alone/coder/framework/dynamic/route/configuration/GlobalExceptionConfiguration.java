@@ -17,10 +17,9 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * @author lengleng
- * @date 2023-07-30
  * <p>
  * 网关异常通用处理器，只作用在webflux 环境下 , 优先级低于 ReactiveNoResourceFoundHandler 执行
+ * </p>
  */
 @Slf4j
 @Order(-1)
@@ -38,13 +37,10 @@ public class GlobalExceptionConfiguration implements ErrorWebExceptionHandler {
         if (response.isCommitted()) {
             return Mono.error(ex);
         }
-
-        // header set
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         if (ex instanceof ResponseStatusException) {
             response.setStatusCode(((ResponseStatusException) ex).getStatusCode());
         }
-
         return response.writeWith(Mono.fromSupplier(() -> {
             DataBufferFactory bufferFactory = response.bufferFactory();
             try {
