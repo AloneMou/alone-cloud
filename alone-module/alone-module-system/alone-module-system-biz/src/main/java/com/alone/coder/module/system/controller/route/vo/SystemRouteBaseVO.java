@@ -69,5 +69,4 @@ public class SystemRouteBaseVO {
     @Schema(description = "排序", requiredMode = Schema.RequiredMode.NOT_REQUIRED, example = "1")
     private Integer sort;
 
-
 }
