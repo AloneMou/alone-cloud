@@ -52,7 +52,7 @@
         <upyun-java-sdk.version>4.2.3</upyun-java-sdk.version>
         <org.json.version>20231013</org.json.version>
         <!--  tika 解析 -->
-        <tika-core.version>2.9.2</tika-core.version>
+        <tika-core.version>3.2.2</tika-core.version>
         <!-- 验证码 -->
         <captcha-plus.version>2.0.3</captcha-plus.version>
         <!-- Lombok -->
