@@ -3,17 +3,21 @@ package com.alone.coder.framework.file.core.service.impl;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alone.coder.framework.common.util.string.StrUtils;
+import com.alone.coder.framework.common.util.web.UrlUtils;
 import com.alone.coder.framework.file.core.module.enums.StorageTypeEnum;
 import com.alone.coder.framework.file.core.module.param.QiniuParam;
 import com.alone.coder.framework.file.core.service.base.AbstractS3BaseFileService;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.qiniu.storage.BucketManager;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.util.Auth;
+import io.micrometer.common.util.StringUtils;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+
+import java.net.URI;
 
 /**
  * 七牛云 KODO 存储服务实现类
@@ -32,11 +36,30 @@ public class QiniuServiceImpl extends AbstractS3BaseFileService<QiniuParam> {
 
 	@Override
 	public void init() {
-		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-		s3Client = AmazonS3ClientBuilder.standard()
-			.withCredentials(new AWSStaticCredentialsProvider(credentials))
-			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "kodo"))
-			.build();
+		String endPoint = param.getEndPoint();
+		String endPointScheme = param.getEndPointScheme();
+		// 如果 endPoint 不包含协议部分, 且配置了 endPointScheme, 则手动拼接协议部分.
+		if (!UrlUtils.hasScheme(endPoint) && StringUtils.isNotBlank(endPointScheme)) {
+			endPoint = endPointScheme + "://" + endPoint;
+		}
+
+		software.amazon.awssdk.regions.Region oss = software.amazon.awssdk.regions.Region.of("kodo");
+		URI endpointOverride = URI.create(endPoint);
+		StaticCredentialsProvider credentialsProvider = StaticCredentialsProvider.create(AwsBasicCredentials.create(param.getAccessKey(), param.getSecretKey()));
+
+		super.s3Client = S3Client.builder()
+				.overrideConfiguration(getClientConfiguration())
+				.region(oss)
+				.endpointOverride(endpointOverride)
+				.credentialsProvider(credentialsProvider)
+				.build();
+
+		super.s3Presigner = S3Presigner.builder()
+				.region(oss)
+				.endpointOverride(endpointOverride)
+				.credentialsProvider(credentialsProvider)
+				.build();
+
 
 		Configuration cfg = new Configuration(Region.autoRegion());
 		auth = Auth.create(param.getAccessKey(), param.getSecretKey());

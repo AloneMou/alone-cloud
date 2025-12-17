@@ -1,12 +1,18 @@
 package com.alone.coder.framework.file.core.service.impl;
 
+import com.alone.coder.framework.common.util.web.UrlUtils;
 import com.alone.coder.framework.file.core.module.enums.StorageTypeEnum;
 import com.alone.coder.framework.file.core.module.param.MinIOParam;
 import com.alone.coder.framework.file.core.service.base.AbstractS3BaseFileService;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import io.micrometer.common.util.StringUtils;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.S3Configuration;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+
+import java.net.URI;
 
 /**
  * Minio服务实现
@@ -22,12 +28,32 @@ public class MinIOServiceImpl extends AbstractS3BaseFileService<MinIOParam> {
 
 	@Override
 	public void init() {
-		BasicAWSCredentials credentials = new BasicAWSCredentials(param.getAccessKey(), param.getSecretKey());
-		s3Client = AmazonS3ClientBuilder.standard()
-			.withPathStyleAccessEnabled(true)
-			.withCredentials(new AWSStaticCredentialsProvider(credentials))
-			.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(param.getEndPoint(), "minio"))
-			.build();
+		String endPoint = param.getEndPoint();
+		String endPointScheme = param.getEndPointScheme();
+		// 如果 endPoint 不包含协议部分, 且配置了 endPointScheme, 则手动拼接协议部分.
+		if (!UrlUtils.hasScheme(endPoint) && StringUtils.isNotBlank(endPointScheme)) {
+			endPoint = endPointScheme + "://" + endPoint;
+		}
+
+		Region oss = Region.of(param.getRegion());
+		URI endpointOverride = URI.create(endPoint);
+		StaticCredentialsProvider credentialsProvider = StaticCredentialsProvider.create(AwsBasicCredentials.create(param.getAccessKey(), param.getSecretKey()));
+
+		super.s3Client = S3Client.builder()
+				.forcePathStyle(true)
+				.overrideConfiguration(getClientConfiguration())
+				.region(oss)
+				.endpointOverride(endpointOverride)
+				.credentialsProvider(credentialsProvider)
+				.build();
+
+		// In MinIOServiceImpl.java's init() method, update your s3Presigner initialization:
+		super.s3Presigner = S3Presigner.builder()
+				.region(oss)
+				.endpointOverride(endpointOverride)
+				.credentialsProvider(credentialsProvider)
+				.serviceConfiguration(S3Configuration.builder().pathStyleAccessEnabled(true).build()) // Add this line
+				.build();
 	}
 
 	@Override

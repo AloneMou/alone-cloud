@@ -7,15 +7,26 @@ import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alone.coder.framework.common.util.string.StrUtils;
 import com.alone.coder.framework.file.core.module.param.S3BaseParam;
-import com.amazonaws.HttpMethod;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
+import com.alone.coder.framework.file.core.service.impl.S3ServiceImpl;
+import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.S3Object;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
+import software.amazon.awssdk.services.s3.presigner.model.PresignedGetObjectRequest;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Date;
+import java.util.function.Consumer;
+
+import static com.alone.coder.framework.file.core.service.base.AbstractProxyTransferService.DEFAULT_CONNECTION_TIMEOUT_SECONDS;
 
 /**
  * s3 基础文件服务
@@ -26,7 +37,11 @@ import java.util.Date;
 @Slf4j
 public abstract class AbstractS3BaseFileService<P extends S3BaseParam> extends AbstractBaseFileService<P> {
 
-	protected AmazonS3 s3Client;
+	protected S3Client s3Client;
+
+	protected S3Presigner s3Presigner;
+
+	protected S3Presigner s3PresignerDownload;
 
 	public static final InputStream EMPTY_INPUT_STREAM = new ByteArrayInputStream(new byte[0]);
 
@@ -52,16 +67,26 @@ public abstract class AbstractS3BaseFileService<P extends S3BaseParam> extends A
 			tokenTime = 1800;
 		}
 
-		Date expirationDate = new Date(System.currentTimeMillis() + tokenTime * 1000);
+		GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+				.applyMutation(processGeneratePresignedUrlRequest())
+				.bucket(bucketName)
+				.key(fullPath)
+				.build();
 
-		GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName, fullPath,
-				HttpMethod.GET);
-		generatePresignedUrlRequest.setExpiration(expirationDate);
-		URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+		S3Presigner presigner = s3PresignerDownload != null ? s3PresignerDownload : s3Presigner;
+		PresignedGetObjectRequest presignedGetObjectRequest = presigner.presignGetObject(GetObjectPresignRequest.builder()
+				.getObjectRequest(getObjectRequest)
+				.signatureDuration(Duration.ofSeconds(tokenTime))
+				.build());
 
+		URL url = presignedGetObjectRequest.url();
 		String defaultUrl = url.toExternalForm();
-		if (StrUtil.isNotEmpty(domain)) {
-			defaultUrl = StrUtils.concat(domain, url.getFile());
+		if (StringUtils.isNotEmpty(domain)) {
+			String path = url.getFile();
+			if (this instanceof S3ServiceImpl) {
+				path = path.replaceFirst(bucketName + "/", "");
+			}
+			defaultUrl = StrUtils.concat(domain, path);
 		}
 		return defaultUrl;
 	}
@@ -112,4 +137,15 @@ public abstract class AbstractS3BaseFileService<P extends S3BaseParam> extends A
 		return IoUtil.readBytes(object.getObjectContent());
 	}
 
+
+	public ClientOverrideConfiguration getClientConfiguration() {
+		return ClientOverrideConfiguration.builder()
+				.apiCallTimeout(Duration.ofSeconds(DEFAULT_CONNECTION_TIMEOUT_SECONDS)) // 设置 API 调用超时时间
+				.build();
+	}
+
+	public Consumer<GetObjectRequest.Builder> processGeneratePresignedUrlRequest() {
+		return builder -> {
+		};
+	}
 }

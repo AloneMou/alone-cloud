@@ -26,6 +26,8 @@ public class S3Param extends S3BaseParam {
 	 * 域名风格 <a href=
 	 * "https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/VirtualHosting.html#path-style-access">查看
 	 * S3 API 说明文档</a>
+	 * <p>bucket-virtual-hosting=虚拟主机风格</p>
+	 * <p>bucket-path-style=路径风格</p>
 	 */
 	private String pathStyle;
 

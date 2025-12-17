@@ -1,6 +1,5 @@
 package com.alone.coder.framework.file.core.service.impl;
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
@@ -14,22 +13,16 @@ import com.alone.coder.framework.common.util.string.StrUtils;
 import com.alone.coder.framework.file.core.module.enums.StorageTypeEnum;
 import com.alone.coder.framework.file.core.module.param.FtpParam;
 import com.alone.coder.framework.file.core.service.base.AbstractProxyTransferService;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import io.micrometer.common.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.time.Duration;
-import java.util.*;
+import java.util.Date;
 
 /**
  * @author zhaojun

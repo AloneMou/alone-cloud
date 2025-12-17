@@ -38,7 +38,7 @@ public class LocalServiceImpl extends AbstractBaseFileService<LocalParam> {
 		File file = new File(param.getFilePath());
 		// 校验文件夹是否存在
 		if (!file.exists()) {
-			String errMsg = StrUtil.format("文件路径:「{}」不存在, 请检查是否填写正确.", file.getAbsolutePath());
+			String errMsg = String.format("文件路径:「%s」不存在, 请检查是否填写正确.", file.getAbsolutePath());
 			throw new InitializeStorageSourceException(STORAGE_SOURCE_INIT_FAIL, errMsg);
 		}
 	}

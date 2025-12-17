@@ -2,6 +2,7 @@ package com.alone.coder.framework.file.core.error.exception;
 
 import com.alone.coder.framework.common.exception.ErrorCode;
 import com.alone.coder.framework.common.exception.enums.GlobalErrorCodeConstants;
+import lombok.Getter;
 
 public class InitializeStorageSourceException extends RuntimeException {
 
@@ -10,7 +11,8 @@ public class InitializeStorageSourceException extends RuntimeException {
 	 *
 	 * @see GlobalErrorCodeConstants
 	 */
-	private Integer code;
+	@Getter
+    private Integer code;
 
 	/**
 	 * 错误提示
@@ -38,11 +40,7 @@ public class InitializeStorageSourceException extends RuntimeException {
 		this.message = message;
 	}
 
-	public Integer getCode() {
-		return code;
-	}
-
-	public InitializeStorageSourceException setCode(Integer code) {
+    public InitializeStorageSourceException setCode(Integer code) {
 		this.code = code;
 		return this;
 	}

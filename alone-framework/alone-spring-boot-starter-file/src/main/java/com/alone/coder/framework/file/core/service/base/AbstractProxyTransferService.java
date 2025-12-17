@@ -17,15 +17,6 @@ import java.io.InputStream;
 public abstract class AbstractProxyTransferService<P extends ProxyTransferParam> extends AbstractBaseFileService<P>{
 
 
-	/**
-	 * 默认连接超时时间(秒)
-	 */
-	public static final int DEFAULT_CONNECTION_TIMEOUT_SECONDS = 5;
-
-	/**
-	 * 默认连接超时时间(毫秒)
-	 */
-	public static final int DEFAULT_CONNECTION_TIMEOUT_MILLIS = DEFAULT_CONNECTION_TIMEOUT_SECONDS * 1000;
 
 	/**
 	 * 服务器代理下载 URL 前缀.

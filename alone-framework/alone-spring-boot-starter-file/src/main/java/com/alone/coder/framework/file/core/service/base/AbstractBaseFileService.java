@@ -13,6 +13,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractBaseFileService<P extends IStorageParam> implements BaseFileService {
 
+
+	/**
+	 * 默认连接超时时间(秒)
+	 */
+	public static final int DEFAULT_CONNECTION_TIMEOUT_SECONDS = 5;
+
+	/**
+	 * 默认连接超时时间(毫秒)
+	 */
+	public static final int DEFAULT_CONNECTION_TIMEOUT_MILLIS = DEFAULT_CONNECTION_TIMEOUT_SECONDS * 1000;
+
 	/**
 	 * 存储源初始化配置
 	 */

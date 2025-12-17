@@ -46,10 +46,12 @@
         <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
         <!-- 文件上传 -->
         <commons-net.version>3.12.0</commons-net.version>
+        <!-- commons-lang3 -->
+        <commons-lang3.version>3.18.0</commons-lang3.version>
         <!-- jsch实现 -->
         <jsch.version>2.27.6</jsch.version>
         <!-- S3协议 -->
-        <aws-java-sdk-s3.version>1.12.777</aws-java-sdk-s3.version>
+        <awssdk.version>2.39.2</awssdk.version>
         <!-- 七牛云 -->
         <qiniu-java-sdk.version>7.12.1</qiniu-java-sdk.version>
         <!-- you拍云 -->
@@ -305,18 +307,24 @@
                 <version>${commons-net.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.github.mwiede</groupId>
                 <artifactId>jsch</artifactId> <!-- 解决 sftp 连接 -->
                 <version>${jsch.version}</version>
             </dependency>
 
 
-            <!-- 三方云服务相关 -->
+
             <dependency>
-                <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-s3</artifactId>
-                <version>${aws-java-sdk-s3.version}</version>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>s3</artifactId>
+                <version>${awssdk.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.qiniu</groupId>
                 <artifactId>qiniu-java-sdk</artifactId>
