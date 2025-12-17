@@ -7,6 +7,7 @@
     <groupId>com.alone.coder</groupId>
     <artifactId>alone-bom</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <dependencyManagement>
         <dependencies>
