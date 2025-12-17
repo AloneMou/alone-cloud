@@ -143,6 +143,11 @@ public class SftpServiceImpl extends AbstractProxyTransferService<SftpParam> {
         return out.toByteArray();
     }
 
+    @Override
+    public String getUploadUrl(String path) {
+        return "";
+    }
+
 
     private synchronized void reconnectIfTimeout() {
         sftp.reconnectIfTimeout();

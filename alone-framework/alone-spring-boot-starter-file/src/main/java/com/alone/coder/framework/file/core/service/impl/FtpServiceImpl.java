@@ -116,6 +116,11 @@ public class FtpServiceImpl extends AbstractProxyTransferService<FtpParam> {
         return out.toByteArray();
     }
 
+    @Override
+    public String getUploadUrl(String path) {
+        return "";
+    }
+
     private synchronized void reconnectIfTimeout() {
         ftp.reconnectIfTimeout();
     }
