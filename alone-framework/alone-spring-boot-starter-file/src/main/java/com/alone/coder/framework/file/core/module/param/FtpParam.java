@@ -62,7 +62,8 @@ public class FtpParam extends ProxyTransferParam {
      * <p>
      * 主动模式为 FTP 服务端主动连接客户端(随机开放端口，需保证防火墙无限制端口)，被动模式为 FTP 服务端被动等待客户端连接.
      * </p>
+     * 使用 {@link  cn.hutool.extra.ftp.FtpMode} 对应的字符串
      */
-    private String ftpMode = "passive";
+    private String ftpMode = "Passive";
 
 }

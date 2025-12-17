@@ -1,5 +1,6 @@
 package com.alone.coder.framework.file.core.module.param;
 
+import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -7,7 +8,7 @@ import lombok.Getter;
  *
  * @author zhaojun
  */
-@Getter
+@Data
 public class ProxyTransferParam implements IStorageParam {
 
 	/**
