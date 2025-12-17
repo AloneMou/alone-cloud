@@ -44,6 +44,10 @@
         <guava.version>33.5.0-jre</guava.version>
         <!-- 解决线程池传递参数 -->
         <transmittable-thread-local.version>2.14.5</transmittable-thread-local.version>
+        <!-- 文件上传 -->
+        <commons-net.version>3.12.0</commons-net.version>
+        <!-- jsch实现 -->
+        <jsch.version>2.27.6</jsch.version>
         <!-- S3协议 -->
         <aws-java-sdk-s3.version>1.12.777</aws-java-sdk-s3.version>
         <!-- 七牛云 -->
@@ -295,6 +299,18 @@
                 <artifactId>transmittable-thread-local</artifactId> <!-- 解决 ThreadLocal 父子线程的传值问题 -->
                 <version>${transmittable-thread-local.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-net</groupId>
+                <artifactId>commons-net</artifactId> <!-- 解决 ftp 连接 -->
+                <version>${commons-net.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.mwiede</groupId>
+                <artifactId>jsch</artifactId> <!-- 解决 sftp 连接 -->
+                <version>${jsch.version}</version>
+            </dependency>
+
+
             <!-- 三方云服务相关 -->
             <dependency>
                 <groupId>com.amazonaws</groupId>
