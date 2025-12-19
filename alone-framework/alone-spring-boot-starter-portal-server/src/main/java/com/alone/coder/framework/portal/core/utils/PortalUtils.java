@@ -1,59 +1,50 @@
 package com.alone.coder.framework.portal.core.utils;
 
-import com.ruoyi.radius.toughradius.common.CoderUtil;
-import com.ruoyi.radius.toughradius.common.bits.NetBits;
 
 import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 
 public class PortalUtils {
 
     public static byte[] encodeString(String str) {
-        try {
-            return str.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException uee) {
-            return str.getBytes();
-        }
+        return str.getBytes(StandardCharsets.UTF_8);
     }
 
 
     public static String decodeString(byte[] utf8) {
-        try {
-            return new String(utf8, "UTF-8");
-        } catch (UnsupportedEncodingException uee) {
-            return new String(utf8);
-        }
+        return new String(utf8, StandardCharsets.UTF_8);
     }
 
     public static byte[] encodeShort(short val) {
         byte[] b = new byte[2];
-        b[1] = (byte) (val >>> 0);
+        b[1] = (byte) (val);
         b[0] = (byte) (val >>> 8);
         return b;
     }
 
     public static short decodeShort(byte[] b) {
-        return (short) (((b[1] & 0xFF) << 0) + ((b[0] & 0xFF) << 8));
+        return (short) (((b[1] & 0xFF)) + ((b[0] & 0xFF) << 8));
     }
 
     public static byte[] encodeInt(int val) {
         byte[] b = new byte[4];
-        b[3] = (byte) (val >>> 0);
+        b[3] = (byte) (val);
         b[2] = (byte) (val >>> 8);
         b[1] = (byte) (val >>> 16);
         b[0] = (byte) (val >>> 24);
         return b;
     }
 
-    public static int decodeInt(byte b[]) {
-        return ((b[3] & 0xFF) << 0) + ((b[2] & 0xFF) << 8)
+    public static int decodeInt(byte[] b) {
+        return ((b[3] & 0xFF)) + ((b[2] & 0xFF) << 8)
                 + ((b[1] & 0xFF) << 16) + ((b[0] & 0xFF) << 24);
     }
 
 
     public static String getHexString(byte[] data) {
-        StringBuffer hex = new StringBuffer("0x");
+        StringBuilder hex = new StringBuilder("0x");
         if (data != null)
             for (int i = 0; i < data.length; i++) {
                 String digit = Integer.toString(data[i] & 0x0ff, 16);
@@ -94,13 +85,13 @@ public class PortalUtils {
     }
 
     public static String decodeMacAddr(byte[] src) {
-        String value = "";
-        for (int i = 0; i < src.length; i++) {
-            String sTemp = Integer.toHexString(0xFF & src[i]);
+        StringBuilder value = new StringBuilder();
+        for (byte b : src) {
+            String sTemp = Integer.toHexString(0xFF & b);
             if (sTemp.equals("0")) {
                 sTemp += "0";
             }
-            value = value + sTemp + ":";
+            value.append(sTemp).append(":");
         }
         return value.substring(0, value.lastIndexOf(":"));
     }
@@ -116,8 +107,8 @@ public class PortalUtils {
         byte[] md5buf = CoderUtil.md5EncoderByte(buf);
 
         byte[] src = userPassword.getBytes();
-        int byteLen = src.length > 16 ? src.length : 16;//取大
-        int xorLen = src.length > 16 ? 16 : src.length;//取小
+        int byteLen = Math.max(src.length, 16);//取大
+        int xorLen = Math.min(src.length, 16);//取小
         byte[] enpassword = new byte[byteLen];
 
         for (int i = 0; i < xorLen; i++) {
@@ -155,15 +146,12 @@ public class PortalUtils {
      */
     public static boolean isValidPAP(String userPassword, String secret, byte[] authenticator, byte[] userPassword2) {
         byte[] enPassword = papEncryption(userPassword, secret, authenticator);
-
         if (enPassword.length != userPassword2.length)
             return false;
-
         for (int i = 0; i < enPassword.length; i++) {
             if (enPassword[i] != userPassword2[i])
                 return false;
         }
-
         return true;
     }
 
@@ -172,17 +160,13 @@ public class PortalUtils {
      */
     public static boolean isValidCHAP(String userPassword, int chapId, byte[] challenge, byte[] chapPassword) {//Secret chapPassword = MD5（Chap ID + userPassword + challenge）
         byte[] md5buf = chapEncryption(userPassword, chapId, challenge);
-
         if (md5buf.length != chapPassword.length)
             return false;
-
         for (int i = 0; i < md5buf.length; i++) {
             if (md5buf[i] != chapPassword[i])
                 return false;
         }
-
         return true;
     }
-
 
 }

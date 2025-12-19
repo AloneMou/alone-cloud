@@ -67,43 +67,5 @@ public class PortalAttribute {
         setAttributeData(attrData);
     }
 
-    protected String getTypeName(int type){
-        switch (type){
-            case PortalPacket.ATTRIBUTE_BASIP_TYPE: return "BasIp";
-            case PortalPacket.ATTRIBUTE_MAC_TYPE: return "Mac";
-            case PortalPacket.ATTRIBUTE_CHAP_PWD_TYPE: return "ChapPassword";
-            case PortalPacket.ATTRIBUTE_PASSWORD_TYPE: return "Password";
-            case PortalPacket.ATTRIBUTE_USERNAME_TYPE: return "Username";
-            case PortalPacket.ATTRIBUTE_CHALLENGE_TYPE: return "Challenge";
-            case PortalPacket.ATTRIBUTE_PORT_TYPE: return "Port";
-            case PortalPacket.ATTRIBUTE_TEXT_INFO_TYPE: return "Textinfo";
-            default:return String.format("Unknow Type (%s)", type);
-        }
-    }
-
-    public String toString() {
-        String fmt = "%s (len=%s):%s";
-        int attrlen = attributeData.length+2;
-        return switch (getAttributeType()) {
-            case PortalPacket.ATTRIBUTE_BASIP_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeIpv4(getAttributeData()));
-            case PortalPacket.ATTRIBUTE_MAC_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeMacAddr(getAttributeData()));
-            case PortalPacket.ATTRIBUTE_CHAP_PWD_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, getAttributeValue());
-            case PortalPacket.ATTRIBUTE_PASSWORD_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeString(getAttributeData()));
-            case PortalPacket.ATTRIBUTE_USERNAME_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeString(getAttributeData()));
-            case PortalPacket.ATTRIBUTE_CHALLENGE_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, getAttributeValue());
-            case PortalPacket.ATTRIBUTE_PORT_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeShort(getAttributeData()));
-            case PortalPacket.ATTRIBUTE_TEXT_INFO_TYPE ->
-                    String.format(fmt, getTypeName(attributeType), attrlen, PortalUtils.decodeString(getAttributeData()));
-            default -> String.format(fmt, getTypeName(attributeType), attrlen, getAttributeValue());
-        };
-    }
-
 
 }

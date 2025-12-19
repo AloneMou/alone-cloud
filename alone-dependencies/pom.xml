@@ -14,7 +14,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <!--统一依赖管理-->
-        <spring.boot.version>3.5.7</spring.boot.version>
+        <spring.boot.version>3.5.8</spring.boot.version>
         <spring.cloud.version>2025.0.0</spring.cloud.version>
         <spring.cloud.alibaba.version>2023.0.3.3</spring.cloud.alibaba.version>
         <hutool.version>5.8.41</hutool.version>
@@ -37,7 +37,7 @@
         <mysql.connector.version>8.3.0</mysql.connector.version>
         <!-- Swagger -->
         <knife4j.version>4.5.0</knife4j.version>
-        <springdoc.version>2.8.5</springdoc.version>
+        <springdoc.version>2.8.14</springdoc.version>
         <swagger.core.version>2.2.28</swagger.core.version>
         <!-- Redisson -->
         <redisson.version>3.52.0</redisson.version>
@@ -87,6 +87,8 @@
         <weixin-java.version>4.7.8-20251117.120146</weixin-java.version>
         <!-- 支付宝支付 -->
         <alipay-sdk.version>4.35.79.ALL</alipay-sdk.version>
+        <!-- fastjson2 -->
+        <fastjson2.version>2.0.60</fastjson2.version>
     </properties>
 
     <dependencyManagement>
@@ -463,6 +465,12 @@
                 <groupId>com.github.binarywang</groupId>
                 <artifactId>wx-java-miniapp-spring-boot-starter</artifactId>
                 <version>${weixin-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
             </dependency>
 
         </dependencies>
