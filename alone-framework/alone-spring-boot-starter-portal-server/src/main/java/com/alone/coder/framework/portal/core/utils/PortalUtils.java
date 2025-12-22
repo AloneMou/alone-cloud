@@ -1,7 +1,9 @@
 package com.alone.coder.framework.portal.core.utils;
 
 
-import java.io.UnsupportedEncodingException;
+import cn.hutool.crypto.digest.MD5;
+import com.alone.coder.framework.common.util.bits.NetBits;
+
 import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -45,13 +47,14 @@ public class PortalUtils {
 
     public static String getHexString(byte[] data) {
         StringBuilder hex = new StringBuilder("0x");
-        if (data != null)
-            for (int i = 0; i < data.length; i++) {
-                String digit = Integer.toString(data[i] & 0x0ff, 16);
+        if (data != null) {
+            for (byte datum : data) {
+                String digit = Integer.toString(datum & 0x0ff, 16);
                 if (digit.length() < 2)
                     hex.append('0');
                 hex.append(digit);
             }
+        }
         return hex.toString();
     }
 
@@ -104,41 +107,35 @@ public class PortalUtils {
         byte[] buf = new byte[16 + NetBits.getByteLen(secret)];
         NetBits.putString(buf, 0, secret);
         NetBits.putBytes(buf, NetBits.getByteLen(secret), authenticator);
-        byte[] md5buf = CoderUtil.md5EncoderByte(buf);
+        byte[] md5buf = MD5.create().digest(buf);
 
         byte[] src = userPassword.getBytes();
         int byteLen = Math.max(src.length, 16);//取大
         int xorLen = Math.min(src.length, 16);//取小
-        byte[] enpassword = new byte[byteLen];
+        byte[] enPassword = new byte[byteLen];
 
         for (int i = 0; i < xorLen; i++) {
-            enpassword[i] = (byte) (src[i] ^ md5buf[i]);
+            enPassword[i] = (byte) (src[i] ^ md5buf[i]);
         }
-
-        if (src.length > 16)
-            System.arraycopy(src, 16, enpassword, 16, src.length - 16);
-        else
-            System.arraycopy(md5buf, src.length, enpassword, src.length, 16 - src.length);
-
-        return enpassword;
+        if (src.length > 16) {
+            System.arraycopy(src, 16, enPassword, 16, src.length - 16);
+        } else {
+            System.arraycopy(md5buf, src.length, enPassword, src.length, 16 - src.length);
+        }
+        return enPassword;
     }
 
     /**
      * CHAP 加密
      */
     public static byte[] chapEncryption(String userPassword, int chapId, byte[] challenge) {
-        //Secret chapPassword = MD5（Chap ID + userPassword + challenge）
-        // TODO AC没有challenge返回时
         byte[] buf = new byte[1 + NetBits.getByteLen(userPassword) + (challenge != null ? challenge.length : 0)];
-//        byte[] buf = new byte[1 + NetBits.getByteLen(userPassword) + challenge.length];
-        NetBits.putByte(buf, 0, (byte) chapId);//Chap ID
-        NetBits.putString(buf, 1, userPassword);//Password
+        NetBits.putByte(buf, 0, (byte) chapId);
+        NetBits.putString(buf, 1, userPassword);
         if (challenge != null) {
             NetBits.putBytes(buf, 1 + NetBits.getByteLen(userPassword), challenge);
         }
-        byte[] md5buf = CoderUtil.md5EncoderByte(buf);
-
-        return md5buf;
+        return MD5.create().digest(buf);
     }
 
     /**

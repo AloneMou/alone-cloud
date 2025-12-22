@@ -1,6 +1,7 @@
 package com.alone.coder.framework.portal.core;
 
 import com.alone.coder.framework.portal.core.packet.PortalPacket;
+import io.netty.channel.ChannelFuture;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.springframework.stereotype.Component;
 
@@ -19,15 +20,14 @@ public class PortalClient {
     private int timeout = 30000;
 
 
-
     /**
      * 推送报文：监听返回值
      *
      * @param request 报文
      * @param ipaddr  接入设备IP地址
      * @param port    接入设备开放的端口号：默认2000
-     * @return
-     * @throws PortalException
+     * @return 接入设备返回的报文
+     * @throws PortalException 异常
      */
     public PortalPacket sendToAc(PortalPacket request, String ipaddr, int port) throws PortalException {
         DatagramSocket sock = null;
@@ -58,7 +58,7 @@ public class PortalClient {
      * @param request 报文
      * @param ipaddr  接入设备IP地址
      * @param port    接入设备开放的端口号：默认2000
-     * @throws PortalException
+     * @throws PortalException 异常
      */
     public void sendToAcNoReply(PortalPacket request, String ipaddr, int port) throws PortalException {
         try (DatagramSocket sock = new DatagramSocket()) {

@@ -1,6 +1,7 @@
 package com.alone.coder.framework.portal.core.packet;
 
 
+import cn.hutool.crypto.digest.MD5;
 import com.alone.coder.framework.portal.core.PortalException;
 import com.alone.coder.framework.portal.core.enums.PortalAuthTypeEnums;
 import com.alone.coder.framework.portal.core.utils.PortalUtils;
@@ -8,7 +9,6 @@ import lombok.Data;
 import org.apache.mina.core.buffer.IoBuffer;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -113,7 +113,6 @@ public class PortalPacket {
      */
     private List<PortalAttribute> attributes = new ArrayList<>();
 
-    private MessageDigest md5Digest = null;
 
 
     public PortalPacket() {
@@ -248,7 +247,7 @@ public class PortalPacket {
      */
     protected byte[] createRequestAuthenticator(String sharedSecret) {
         byte[] randomBytes = new byte[16];
-        MessageDigest md5 = getMd5Digest();
+        MessageDigest md5 = MD5.create().getDigest();
         md5.reset();
         md5.update((byte) getVer());
         md5.update((byte) getType());
@@ -277,7 +276,7 @@ public class PortalPacket {
      * @return 响应验证
      */
     protected byte[] createResponseAuthenticator(String sharedSecret, byte[] requestAuthenticator) {
-        MessageDigest md5 = getMd5Digest();
+        MessageDigest md5 = MD5.create().getDigest();
         md5.reset();
         md5.update((byte) getVer());
         md5.update((byte) getType());
@@ -296,18 +295,6 @@ public class PortalPacket {
         md5.update(PortalUtils.encodeString(sharedSecret));
         return md5.digest();
     }
-
-
-    protected MessageDigest getMd5Digest() {
-        if (md5Digest == null)
-            try {
-                md5Digest = MessageDigest.getInstance("MD5");
-            } catch (NoSuchAlgorithmException nsae) {
-                throw new RuntimeException("md5 digest not available", nsae);
-            }
-        return md5Digest;
-    }
-
 
     /**
      * 校验响应验证字
