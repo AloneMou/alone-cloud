@@ -33,6 +33,7 @@
         <module>alone-spring-boot-starter-elasticsearch</module>
         <module>alone-common-radius</module>
         <module>alone-spring-boot-starter-portal-server</module>
+        <module>alone-spring-boot-starter-snmp</module>
     </modules>
 
 </project>
