@@ -14,6 +14,11 @@ public class PortalProperties {
     private Integer port = 50100;
 
     /**
+     * 认证密钥
+     */
+    private String secret = "";
+
+    /**
      * 是否启用，默认启用
      */
     private Boolean enable = true;

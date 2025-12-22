@@ -78,6 +78,7 @@ public class NettyPortalServer {
         }
 
         try {
+            request.setSecret(portalProperties.getSecret());
             CompletableFuture<PortalPacket> future = new CompletableFuture<>();
             String requestId = ipaddr + ":" + port + ":" + request.getSerialNo();
             pendingRequests.put(requestId, future);
@@ -135,18 +136,18 @@ public class NettyPortalServer {
     /**
      * 异步推送报文：无返回值 不等待
      *
-     * @param request 报文
-     * @param ipaddr  接入设备IP地址
-     * @param port    接入设备开放的端口号：默认2000
+     * @param array  报文
+     * @param ipaddr 接入设备IP地址
+     * @param port   接入设备开放的端口号：默认2000
      */
-    public void sendToAcNoReplyAsync(PortalPacket request, String ipaddr, int port) {
+    public void sendToAcNoReplyAsync(byte[] array, String ipaddr, int port) {
         if (channel == null) {
             log.warn("Netty客户端未初始化");
             return;
         }
         try {
             // 编码请求报文
-            ByteBuf buff = Unpooled.wrappedBuffer(request.encodePacket().array());
+            ByteBuf buff = Unpooled.wrappedBuffer(array);
             InetSocketAddress recipient = new InetSocketAddress(ipaddr, port);
             // 发送报文
             channel.writeAndFlush(new DatagramPacket(buff, recipient));
@@ -154,6 +155,7 @@ public class NettyPortalServer {
             log.error("发送无回复报文异常", e);
         }
     }
+
 
     /**
      * 推送报文：无返回值 不等待（阻塞方式，用于兼容现有接口）
@@ -164,7 +166,30 @@ public class NettyPortalServer {
      * @throws PortalException 异常
      */
     public void sendToAcNoReply(PortalPacket request, String ipaddr, int port) throws PortalException {
-        sendToAcNoReplyAsync(request, ipaddr, port);
+        request.setSecret(portalProperties.getSecret());
+        request.setIsChap(portalProperties.getAuthType().getValue());
+        sendToAcNoReplyAsync(request.encodePacket().array(), ipaddr, port);
+    }
+
+    /**
+     * 推送报文：无返回值 不等待（阻塞方式，用于兼容现有接口）
+     *
+     * @param array  报文
+     * @param ipaddr 接入设备IP地址
+     * @param port   端口
+     */
+    public void sendToAcNoReply(byte[] array, String ipaddr, int port) {
+        sendToAcNoReplyAsync(array, ipaddr, port);
+    }
+
+    /**
+     * 推送报文：无返回值 不等待（阻塞方式，用于兼容现有接口）
+     *
+     * @param array  报文
+     * @param ipaddr 接入设备IP地址
+     */
+    public void sendToAcNoReply(byte[] array, String ipaddr) {
+        sendToAcNoReplyAsync(array, ipaddr, portalProperties.getNasPort());
     }
 
     /**
