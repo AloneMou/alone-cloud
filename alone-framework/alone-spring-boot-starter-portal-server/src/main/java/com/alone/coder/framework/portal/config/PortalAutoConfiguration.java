@@ -12,7 +12,7 @@ import jakarta.annotation.Resource;
 @AutoConfiguration
 @EnableConfigurationProperties(PortalProperties.class)
 @ConditionalOnProperty(prefix = "aaa.portal", name = "enable", havingValue = "true", matchIfMissing = true) // 设置为 false 时，禁用
-public class PortalConfig {
+public class PortalAutoConfiguration {
 
     @Resource
     private PortalProperties portalProperties;
