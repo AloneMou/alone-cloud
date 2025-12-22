@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>alone-common-radius</artifactId>
+    <artifactId>alone-spring-boot-starter-radius</artifactId>
     <description>
         使用https://github.com/ctran/TinyRadius实现
     </description>
